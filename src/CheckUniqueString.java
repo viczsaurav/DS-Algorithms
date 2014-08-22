@@ -1,5 +1,6 @@
 /*
- * Page-73 1.1 : Implement an algorithm to determine if a string has all unique characters. 
+ * Page-73 
+ * Q 1.1 : Implement an algorithm to determine if a string has all unique characters. 
  * What if you cannot use additional data structures? 
  * Sol:
  * 		Check if ASCII or Unicode [ASCII has 256 chars, Unicode has 2^21]

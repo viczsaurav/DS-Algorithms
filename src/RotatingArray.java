@@ -4,7 +4,10 @@
  * Page-52 : A sorted array has been rotated so that the elements might appear in the order 3456712. 
  * How would you find the minimum element? You may assume that the array has all unique elements.
  * 
- * Sol : Binary Search
+ * Sol : Find the pivot point, divide the array in two sub-arrays and call binary search.
+	The main idea for finding pivot is – for a sorted (in increasing order) and pivoted array, 
+	pivot element is the only only element for which next element to it is smaller than it.
+	Using above criteria and binary search methodology we can get pivot element in O(logn) time
  */
 
 public class RotatingArray {

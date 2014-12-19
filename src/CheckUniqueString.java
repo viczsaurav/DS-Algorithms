@@ -19,7 +19,7 @@ public class CheckUniqueString {
 		int val = str.charAt(i);
 		if (ascii_charset[val]) { // Already visited
 			return false;
-	}
+		}
 			 ascii_charset[val] = true;
 	}
 	return true;

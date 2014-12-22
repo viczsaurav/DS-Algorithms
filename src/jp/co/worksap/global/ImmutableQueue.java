@@ -5,68 +5,110 @@ package jp.co.worksap.global;
  *
  */
 import java.util.NoSuchElementException;
+import java.util.Stack;
+
 /**
-* The Queue class represents an immutable first-in-first-out (FIFO) queue of objects.
-* @param <E>
-*/
+ * The Queue class represents an immutable first-in-first-out (FIFO) queue of
+ * objects.
+ * 
+ * @param <E>
+ */
 public class ImmutableQueue<E> {
 	/**
-	* requires default constructor.
-	*/
+	 * requires default constructor.
+	 */
+
+	private static class InternalStack<E> {
+		private E front;
+		private InternalStack<E> rear;
+		private int size;
+
+		private InternalStack() {
+			this.front = null;
+			this.rear = null;
+			this.size = 0;
+		}
+
+		private InternalStack(E element, InternalStack<E> rear) {
+			this.front = element;
+			this.rear = rear;
+			this.size = rear.size + 1;
+		}
+
+		private static InternalStack newStack() {
+			return new InternalStack();
+		}
+
+		public InternalStack<E> toReverseStack() {
+			InternalStack<E> invertedStack = new InternalStack<E>();
+			InternalStack<E> tail = this;
+			while (!tail.isEmpty()) {
+				invertedStack = invertedStack.push(tail.front);
+				tail = tail.rear;
+			}
+			return invertedStack;
+		}
+
+		public boolean isEmpty() {
+			return this.size == 0;
+		}
+
+		public InternalStack<E> push(E element) {
+			return new InternalStack<E>(element, this);
+		}
+	}
+
+	private InternalStack<E> orderedStack;
+	private InternalStack<E> reversedStack;
+	private E topElement;
+
 	public ImmutableQueue() {
-	// modify this constructor if necessary, but do not remove default constructor
+		this.orderedStack = InternalStack.newStack();
+		this.reversedStack = InternalStack.newStack();
 	}
-	// add other constructors if necessary
-	/**
-	* Returns the queue that adds an item into the tail of this queue without modifying this queue.
-	* <pre>
-	* e.g.
-	* When this queue represents the queue (2, 1, 2, 2, 6) and we enqueue the value 4 into this queue,
-	* this method returns a new queue (2, 1, 2, 2, 6, 4)
-	* and this object still represents the queue (2, 1, 2, 2, 6) .
-	* </pre>
-	* If the element e is null, throws IllegalArgumentException.
-	* @param e
-	* @return
-	* @throws IllegalArgumentException
-	*/
+
+	public ImmutableQueue(InternalStack<E> inOrder, InternalStack<E> inReverse) {
+		this.orderedStack = inOrder;
+		this.reversedStack = inReverse;
+	}
+
 	public ImmutableQueue<E> enqueue(E e) {
-	return null;
+		if (null == e)
+			throw new IllegalArgumentException();
+		return new ImmutableQueue<E>(this.orderedStack.push(e),
+				this.reversedStack);
 	}
-	/**
-	* Returns the queue that removes the object at the head of this queue without modifying this queue.
-	* <pre>
-	* e.g.
-	* When this queue represents the queue (7, 1, 3, 3, 5, 1) ,
-	* this method returns a new queue (1, 3, 3, 5, 1)
-	* and this object still represents the queue (7, 1, 3, 3, 5, 1) .
-	* </pre>
-	* If this queue is empty, throws java.util.NoSuchElementException.
-	* @return
-	* @throws java.util.NoSuchElementException
-	*/
+
 	public ImmutableQueue<E> dequeue() {
-	return null;
+		if (this.isEmpty())
+			throw new NoSuchElementException();
+		if (!this.reversedStack.isEmpty())
+			return new ImmutableQueue<E>(this.orderedStack,
+					this.reversedStack.rear);
+		else
+			return new ImmutableQueue<E>(InternalStack.newStack(),
+					this.orderedStack.toReverseStack().rear);
 	}
-	/**
-	* Looks at the object which is the head of this queue without removing it from the queue.
-	* <pre>
-	* e.g.
-	* When this queue represents the queue (7, 1, 3, 3, 5, 1),
-	* this method returns 7 and this object still represents the queue (7, 1, 3, 3, 5, 1)
-	* </pre>
-	* If the queue is empty, throws java.util.NoSuchElementException.
-	* @return
-	* @throws java.util.NoSuchElementException
-	*/
+
+	private boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return size() == 0;
+	}
+
 	public E peek() {
-	return null;
+		if (this.isEmpty())
+			throw new NoSuchElementException();
+		if (this.reversedStack.isEmpty())
+			balanceQueue();
+		return this.reversedStack.front;
 	}
-	/**
-	* Returns the number of objects in this queue.
-	* @return
-	*/
+
 	public int size() {
-	return -1;
+		return this.orderedStack.size + this.reversedStack.size;
+	}
+
+	private void balanceQueue() {
+		this.reversedStack = this.orderedStack.toReverseStack();
+		this.orderedStack = InternalStack.newStack();
 	}
 }

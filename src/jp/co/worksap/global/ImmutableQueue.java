@@ -1,11 +1,9 @@
 package jp.co.worksap.global;
 
-/**
- * @author Saurav
- *
- */
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Stack;
 
 /**
  * The Queue class represents an immutable first-in-first-out (FIFO) queue of
@@ -14,101 +12,143 @@ import java.util.Stack;
  * @param <E>
  */
 public class ImmutableQueue<E> {
+
+	private static int capacity = 10000;
+
+	private LinkedList<Integer> enqList = new LinkedList<Integer>();
+	private List<Integer> deqList = new ArrayList<Integer>();
+	private List<E> queue = new ArrayList<E>();
+
+	int end = -1;
+	int start = -1;
+
 	/**
 	 * requires default constructor.
 	 */
-
-	private static class InternalStack<E> {
-		private E front;
-		private InternalStack<E> rear;
-		private int size;
-
-		private InternalStack() {
-			this.front = null;
-			this.rear = null;
-			this.size = 0;
-		}
-
-		private InternalStack(E element, InternalStack<E> rear) {
-			this.front = element;
-			this.rear = rear;
-			this.size = rear.size + 1;
-		}
-
-		private static InternalStack newStack() {
-			return new InternalStack();
-		}
-
-		public InternalStack<E> toReverseStack() {
-			InternalStack<E> invertedStack = new InternalStack<E>();
-			InternalStack<E> tail = this;
-			while (!tail.isEmpty()) {
-				invertedStack = invertedStack.push(tail.front);
-				tail = tail.rear;
-			}
-			return invertedStack;
-		}
-
-		public boolean isEmpty() {
-			return this.size == 0;
-		}
-
-		public InternalStack<E> push(E element) {
-			return new InternalStack<E>(element, this);
-		}
-	}
-
-	private InternalStack<E> orderedStack;
-	private InternalStack<E> reversedStack;
-	private E topElement;
-
 	public ImmutableQueue() {
-		this.orderedStack = InternalStack.newStack();
-		this.reversedStack = InternalStack.newStack();
+		enqList.clear();
+		deqList.clear();
+		queue.clear();
+		end = -1;
+		start = -1;
+		// modify this constructor if necessary, but do not remove default
+		// constructor
 	}
 
-	public ImmutableQueue(InternalStack<E> inOrder, InternalStack<E> inReverse) {
-		this.orderedStack = inOrder;
-		this.reversedStack = inReverse;
+	// add other constructors if necessary
+
+	private ImmutableQueue(List<E> queue, LinkedList<Integer> enqList,
+			List<Integer> dequeList, int start, int end) {
+		this.queue = queue;
+		this.enqList = enqList;
+		this.deqList = dequeList;
+		this.start = start;
+		this.end = end;
 	}
 
+	/**
+	 * Returns the queue that adds an item into the tail of this queue without
+	 * modifying this queue.
+	 * 
+	 * <pre>
+	 * e.g.
+	 * When this queue represents the queue (2, 1, 2, 2, 6) and we enqueue the value 4 into this queue,
+	 * this method returns a new queue (2, 1, 2, 2, 6, 4)
+	 * and this object still represents the queue (2, 1, 2, 2, 6) .
+	 * </pre>
+	 * 
+	 * If the element e is null, throws IllegalArgumentException.
+	 * 
+	 * @param e
+	 * @return
+	 * @throws IllegalArgumentException
+	 */
 	public ImmutableQueue<E> enqueue(E e) {
-		if (null == e)
+		if (e == null)
 			throw new IllegalArgumentException();
-		return new ImmutableQueue<E>(this.orderedStack.push(e),
-				this.reversedStack);
-	}
 
-	public ImmutableQueue<E> dequeue() {
-		if (this.isEmpty())
-			throw new NoSuchElementException();
-		if (!this.reversedStack.isEmpty())
-			return new ImmutableQueue<E>(this.orderedStack,
-					this.reversedStack.rear);
+		queue.add(e);
+		int indexEnd = end + 1;
+		int indexStart = 0;
+		if (start == -1)
+			indexStart = start + 1;
 		else
-			return new ImmutableQueue<E>(InternalStack.newStack(),
-					this.orderedStack.toReverseStack().rear);
+			indexStart = start;
+		enqList.add(indexEnd);
+		return new ImmutableQueue<E>(queue, enqList, deqList, indexStart,
+				indexEnd);
 	}
 
-	private boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return size() == 0;
-	}
+	/**
+	 * Returns the queue that removes the object at the head of this queue
+	 * without modifying this queue.
+	 * 
+	 * <pre>
+	 * e.g.
+	 * When this queue represents the queue (7, 1, 3, 3, 5, 1) ,
+	 * this method returns a new queue (1, 3, 3, 5, 1)
+	 * and this object still represents the queue (7, 1, 3, 3, 5, 1) .
+	 * </pre>
+	 * 
+	 * If this queue is empty, throws java.util.NoSuchElementException.
+	 * 
+	 * @return
+	 * @throws java.util.NoSuchElementException
+	 */
+	public ImmutableQueue<E> dequeue() throws NoSuchElementException {
 
-	public E peek() {
-		if (this.isEmpty())
+		if (start == -1 || end == -1 || queue.isEmpty() || enqList.isEmpty()
+				|| start > end)
 			throw new NoSuchElementException();
-		if (this.reversedStack.isEmpty())
-			balanceQueue();
-		return this.reversedStack.front;
+
+		// deqList.add(enqList.removeFirst());
+		int indexStart = start + 1;
+		return new ImmutableQueue<>(queue, enqList, deqList, indexStart, end);
 	}
 
+	/**
+	 * Looks at the object which is the head of this queue without removing it
+	 * from the queue.
+	 * 
+	 * <pre>
+	 * e.g.
+	 * When this queue represents the queue (7, 1, 3, 3, 5, 1),
+	 * this method returns 7 and this object still represents the queue (7, 1, 3, 3, 5, 1)
+	 * </pre>
+	 * 
+	 * If the queue is empty, throws java.util.NoSuchElementException.
+	 * 
+	 * @return
+	 * @throws java.util.NoSuchElementException
+	 */
+	public E peek() {
+		if (start == -1 || end == -1 || queue.isEmpty() || enqList.isEmpty()
+				|| start > end)
+			throw new NoSuchElementException();
+		return queue.get(start);
+	}
+
+	/**
+	 * Returns the number of objects in this queue.
+	 * 
+	 * @return
+	 */
 	public int size() {
-		return this.orderedStack.size + this.reversedStack.size;
+		if (start == -1 || end == -1 || queue.isEmpty() || enqList.isEmpty()
+				|| start > end)
+			return 0;
+		return end - start + 1;
 	}
 
-	private void balanceQueue() {
-		this.reversedStack = this.orderedStack.toReverseStack();
-		this.orderedStack = InternalStack.newStack();
+	public void printQueue() {
+		if (start == -1 || end == -1 || queue.isEmpty() || enqList.isEmpty()
+				|| start > end) {
+			System.out.println("Empty Queue, size:" + size());
+			return;
+		}
+		System.out.println(" size = " + size());
+		for (int i = start; i <= end; i++) {
+			System.out.print(queue.get(enqList.get(i)) + ",");
+		}
 	}
 }

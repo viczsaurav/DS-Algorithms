@@ -16,11 +16,11 @@ public class CheckUniqueString {
 
 	boolean [] ascii_charset = new boolean[256];
 	for (int i=0; i< str.length(); i++){
-		int val = str.charAt(i);
-		if (ascii_charset[val]) { // Already visited
+//		int val = str.charAt(i);
+		if (ascii_charset[str.charAt(i)]) { // Already visited
 			return false;
 		}
-			 ascii_charset[val] = true;
+			 ascii_charset[str.charAt(i)] = true;
 	}
 	 return true;
 	}
@@ -28,7 +28,7 @@ public class CheckUniqueString {
 	public static void main(String [] args) {
 		CheckUniqueString CUS = new CheckUniqueString();
 		String str = "hsfjksadhgiuasdfbaskldcfgasdfbjasdff";
-		String str1 = "qwertyuiopasdfghjklzxcvbnm";
+		String str1 = "qwertyuiopasdfghjklzxcvbnm)(*&^%$#@ASDFGHJUYTREWQMKLOIP";
 		System.out.println("Is String " + str + "' unique? : " + Boolean.toString(CUS.CheckUnique(str)));
 		System.out.println("Is String '" + str1 + "' unique? : " + Boolean.toString(CUS.CheckUnique(str1)));
 	}

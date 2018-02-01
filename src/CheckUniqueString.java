@@ -1,4 +1,6 @@
-/*
+/**
+ * Cracking Coding Interview 
+ * ----------------------------
  * Page-73 
  * Q 1.1 : Implement an algorithm to determine if a string has all unique characters. 
  * What if you cannot use additional data structures? 
@@ -8,6 +10,8 @@
  * 		check the value (True/False) at corresponding ascii index. 
  * 		If visited(True), return saying not Unique, if not visited(False), mark it as visited(True).
  * 		If String length is greater than 256, return not unique as anything greater than 256 means repetition.
+ * 
+ * @author Saurav
  */
 
 public class CheckUniqueString {

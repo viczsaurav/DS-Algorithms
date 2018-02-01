@@ -59,7 +59,7 @@ public class SmallestSubArrySumGrtThnNum {
 	}
 
 	/**
-	 * Finding smallest subarray in Linear time - O(n)
+	 * Finding smallest subarray in Linear time - O(2n)=~ O(n)
 	 * @param arry
 	 * @param n
 	 * @return

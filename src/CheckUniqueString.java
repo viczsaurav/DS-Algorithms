@@ -15,7 +15,8 @@
  */
 
 public class CheckUniqueString {
-	public boolean CheckUnique(String str) {
+	
+	public static boolean checkUnique(String str) {
 		if (str.length() > 256) return false;
 
 	boolean [] ascii_charset = new boolean[256];
@@ -30,11 +31,12 @@ public class CheckUniqueString {
 	}
 	
 	public static void main(String [] args) {
-		CheckUniqueString CUS = new CheckUniqueString();
+		long startTime = System.currentTimeMillis();
 		String str = "hsfjksadhgiuasdfbaskldcfgasdfbjasdff";
 		String str1 = "qwertyuiopasdfghjklzxcvbnm)(*&^%$#@ASDFGHJUYTREWQMKLOIP";
-		System.out.println("Is String " + str + "' unique? : " + Boolean.toString(CUS.CheckUnique(str)));
-		System.out.println("Is String '" + str1 + "' unique? : " + Boolean.toString(CUS.CheckUnique(str1)));
+		System.out.println("Is String " + str + "' unique? : " + Boolean.toString(checkUnique(str)));
+		System.out.println("Is String '" + str1 + "' unique? : " + Boolean.toString(checkUnique(str1)));
+		CommonUtils.displayExecutionTime(startTime);
 	}
 	
 }

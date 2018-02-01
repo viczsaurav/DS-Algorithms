@@ -8,7 +8,7 @@
 public class SmallestSubArrySumGrtThnNum {
 
 	public static void main(String[] args) {
-		
+		long startTime = System.currentTimeMillis();
 		int [] arry1 = {1,4,45,6,0,19};
 		int n1 = 74;
 		System.out.println("Length1-N   : "+ findSmallestSubArryN(arry1,n1));

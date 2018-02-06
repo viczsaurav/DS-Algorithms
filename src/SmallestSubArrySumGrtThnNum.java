@@ -28,6 +28,7 @@ public class SmallestSubArrySumGrtThnNum {
 		int n4 = 48;
 		System.out.println("Length4-N   : "+ findSmallestSubArryN(arry4,n4));
 		System.out.println("Length4-N^2 : "+ findSmallestSubArryN2(arry4,n4)+"\n");
+		CommonUtils.displayExecutionTime(startTime);
 	}
 
 	/**

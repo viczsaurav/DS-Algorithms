@@ -10,6 +10,13 @@ public class MaxCoordinateSquaredDistance {
 	public static void main(String[] args) {
 		System.out.println("Expected = 5 , final = "+ solution(1, 1, 2, 3));
 		System.out.println("Expected = 8 , final = "+ solution(2, 4, 2, 4));
+		System.out.println("Expected = 5 , final = "+ solution(-1, -1, -1, -1));
+		System.out.println("Expected = 5 , final = "+ solution(1, 2, 3, 4));
+		System.out.println("Expected = 5 , final = "+ solution(1, 1, 2, 3));
+		System.out.println("Expected = 5 , final = "+ solution(1, 1, 2, 3));
+		System.out.println("Expected =  , final = "+ solution(-10, 0, 0, -10));
+		System.out.println("Expected =  , final = "+ solution(-10, 0, 0, 10));
+		System.out.println("Expected =  , final = "+ solution(-10, 0, -10, 0));
 
 	}
 	
@@ -28,7 +35,7 @@ public class MaxCoordinateSquaredDistance {
 	     return dist;
 	    }
 	    public static int findDistance(int x1, int x2, int y1, int y2){
-	        return (x1-y1)*(x1-y1)+(x2-y2)*(x2-y2);
+	        return (x1-x2)*(x1-x2)+(y1-y2)*(y1-y2);
 	    }
 
 }

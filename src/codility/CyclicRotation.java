@@ -95,6 +95,22 @@ public class CyclicRotation {
        return A;
     }
 	
+	public static int[] juggleSolution(int[] A, int K) {
+		
+		/**  Instead of moving one by one, divide the array in different sets
+		*  where number of sets is equal to GCD of n and d and move the elements within sets. O(n), O(1)
+		*/
+		int sets = gcd(A.length,K);
+		//TODO
+		
+		return A;
+	}
+	
+	public static int gcd(int a, int b) {
+		if(b==0)	return a;
+		else 		return gcd(b,a%b);
+	}
+	
 	public static void printArray(int[] A) {
 		System.out.println("");
 		for (int i : A)	System.out.print(i + ",");

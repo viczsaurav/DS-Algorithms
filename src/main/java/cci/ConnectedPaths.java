@@ -1,3 +1,4 @@
+package cci;
 
 /**
  * Julia is planning a long vacation in different cities and wants to know whether a path exists between two cities. There are n cities numbered from 1 to n. 

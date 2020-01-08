@@ -1,3 +1,4 @@
+package cci;
 
 public class MinNumHandPlayed {
 

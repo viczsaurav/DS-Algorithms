@@ -1,3 +1,4 @@
+package cci;
 
 /**
  * Problem:  Find smallest subarray  with sum greater than a given value (positive numbers)

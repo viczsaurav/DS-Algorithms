@@ -1,17 +1,19 @@
+package cci;
+
 /**
  * 
  * @author Saurav
  * 
- * IronMan is ready for battle! He starts his battle at location0 moves in 1-unit increments toward his final showdown at
+ * cci.IronMan is ready for battle! He starts his battle at location0 moves in 1-unit increments toward his final showdown at
 	location n−1. Each location i has a power value, p . If p < 0, then there is an enemy at location i that he must losep power to
-	beat; if p ≥ 0, then he will restorep power at locationi. IronMan dies if his armor charge becomes < 1 at any point either during
+	beat; if p ≥ 0, then he will restorep power at locationi. cci.IronMan dies if his armor charge becomes < 1 at any point either during
 	or after a fight, so he needs a proper initial charge to survive all possible fights in his battle traveling from location 0 to location
 	n−1. Help him find the minimum charge needed to survive all fights in the battle!
 	
 	Complete the ironMan function in your editor. It has 1 parameter: an array of n integers, p, where each index i (0 ≤ i < n) 
-	describes the power charge lost or gained at battle location i. If the value at some p < 0, it represents the amount of charge IronMan must
+	describes the power charge lost or gained at battle location i. If the value at some p < 0, it represents the amount of charge cci.IronMan must
 	deplete to defeat the enemy; otherwise, it represents the amount of charge that he can restore at that location. 
-	Your function must return an integer denoting the minimum starting charge IronMan needs to survive all fights.
+	Your function must return an integer denoting the minimum starting charge cci.IronMan needs to survive all fights.
 
 
 	Constraints
@@ -21,7 +23,7 @@
 	
 	Output Format
 	================
-	Your function must return an integer denoting the minimum amount of charge IronMan will need to survive all fights in the
+	Your function must return an integer denoting the minimum amount of charge cci.IronMan will need to survive all fights in the
 	battle. This is printed to stdout by the locked stub code in your editor.
 	
 	Sample Input 0
@@ -52,7 +54,7 @@
 	============
 	Sample Case 0:	
 	--------------
-	If IronMan's initial charge < 8, then he will die somewhere in the middle of his battle. Thus, we return 8 as the minimum charge
+	If cci.IronMan's initial charge < 8, then he will die somewhere in the middle of his battle. Thus, we return 8 as the minimum charge
 	needed to survive the battle.
 	
  *

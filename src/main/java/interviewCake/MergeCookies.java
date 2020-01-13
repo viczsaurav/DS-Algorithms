@@ -1,5 +1,10 @@
 package interviewCake;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class MergeCookies {
 	/**
 	 * In order to win the prize for most cookies sold, my friend Alice and I are going to merge our Girl Scout Cookies orders and enter as one unit.
@@ -71,4 +76,25 @@ public class MergeCookies {
 
 	}
 
+	/**
+	 * What if we wanted to merge several sorted arrays? Write a method that takes as an input an array of sorted arrays and outputs a single sorted array with all the items from each array.
+	 *
+	 * Do we absolutely have to allocate a new array to use for the merged output? Where else could we store our merged array?
+	 * How would our method need to change?
+	 */
+
+	public static int[] mergeAllArrays(int[][] arrayOfArrays){
+
+		List<Integer> allMergedArray = new ArrayList<>();
+
+		for (int i=0; i<arrayOfArrays.length;i++){
+			// Convert List<Integer> => int[] Array
+			int[] toMergeArray = allMergedArray.stream().mapToInt(num-> num).toArray();
+			int[] mergedArray = mergeArrays(toMergeArray, arrayOfArrays[i]);
+
+			// Convert int[] Array => List<Integers>
+			allMergedArray = Arrays.stream(mergedArray).boxed().collect(Collectors.toList());
+		}
+		return allMergedArray.stream().mapToInt(num-> num).toArray();
+	}
 }

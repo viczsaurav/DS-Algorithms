@@ -17,7 +17,7 @@ public class MergeCookies {
 	 * // prints [1, 3, 4, 5, 6, 8, 10, 11, 12, 14, 15, 19]
 	 */
 
-	public static int[] mergeArrays(int[] myArray, int[] alicesArray) {
+	public static int[] mergeArraysRepeated(int[] myArray, int[] alicesArray) {
 
 		int[] mergedArray = new int[myArray.length + alicesArray.length];
 
@@ -44,5 +44,31 @@ public class MergeCookies {
 		return mergedArray;
 	}
 
+	public static int[] mergeArrays(int[] myArray, int[] alicesArray) {
+
+		int[] mergedArray = new int[myArray.length + alicesArray.length];
+
+		int myArrayIdx = 0;
+		int alicesArrayIdx = 0;
+		int mergedArrayIdx = 0;
+
+		while (mergedArrayIdx < mergedArray.length) {
+
+			boolean isMyArrayCompleted = (myArrayIdx >= myArray.length);
+			boolean isAliceArrayCompleted = (alicesArrayIdx >= alicesArray.length);
+
+			if (!isMyArrayCompleted && (isAliceArrayCompleted ||
+							(myArray[myArrayIdx] <= alicesArray[alicesArrayIdx]))) {
+				mergedArray[mergedArrayIdx] = myArray[myArrayIdx];
+				myArrayIdx++;
+			} else {
+				mergedArray[mergedArrayIdx] = alicesArray[alicesArrayIdx];
+				alicesArrayIdx++;
+			}
+			mergedArrayIdx++;
+		}
+		return mergedArray;
+
+	}
 
 }

@@ -117,7 +117,27 @@ public class MergeMeetings {
 		// Step 1: Sort according to starting time
 		// in-place
 
-	  //meetings.sort((Meeting m1, Meeting m2)-> m1.startTime-m2.startTime);
+		/**
+		 * Ways of writing Comparator
+				// 1. Override Compare Method
+				Comparator<Meeting> c = new Comparator<Meeting>() {
+					@Override
+					public int compare(Meeting o1, Meeting o2) {
+						return o1.getStartTime()- o2.getStartTime();
+					}
+				};
+
+				// 2. With lambda
+				Comparator<Meeting> c = (o1, o2) -> o1.getStartTime()- o2.getStartTime();
+
+				Collections.sort(meetings,c);
+
+				// 3. Using sort method of Collection with Comparator
+				meetings.sort((Meeting m1, Meeting m2)-> m1.startTime-m2.startTime);
+		 */
+
+
+	  // 4. With Comparator methods
 		meetings.sort(Comparator.comparingInt(Meeting::getStartTime));
 		Meeting[] sortedMeetings = meetings.toArray(new Meeting[meetings.size()]);
 

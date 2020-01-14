@@ -35,6 +35,90 @@ public class CafeOrderChecker {
 	 */
 
 	/**
+	 * Approach to start from servedOrders, O(n) time and O(1) space
+	 * @param takeOutOrders
+	 * @param dineInOrders
+	 * @param servedOrders
+	 * @return
+	 */
+	public static boolean isFirstComeFirstServed(int[] takeOutOrders, int[] dineInOrders, int[] servedOrders) {
+		int takeOutOrdersIndex = 0;
+		int dineInOrdersIndex = 0;
+
+		for (int order : servedOrders) {
+
+			/*
+			 * if we still have orders in takeOutOrders and the current order in takeOutOrders
+			 * is the same as the current order in servedOrders
+			 */
+			if (takeOutOrdersIndex < takeOutOrders.length && order == takeOutOrders[takeOutOrdersIndex]) {
+				takeOutOrdersIndex++;
+
+			 /** If we still have orders in dineInOrders and the current order in dineInOrder
+				* is the same as the current order in servedOrders
+			  */
+			} else if (dineInOrdersIndex < dineInOrders.length && order == dineInOrders[dineInOrdersIndex]) {
+				dineInOrdersIndex++;
+
+			/** if the current order in servedOrders doesn't match the current order in takeOutOrders or
+			 * dineInOrders,then we're not serving first-come, first-served
+			 */
+			} else {
+				return false;
+			}
+		}
+
+		// check for any extra orders at the end of takeOutOrders or dineInOrders
+		if (dineInOrdersIndex != dineInOrders.length || takeOutOrdersIndex != takeOutOrders.length) {
+			return false;
+		}
+
+		// all orders in servedOrders have been "accounted for"
+		// so we're serving first-come, first-served!
+		return true;
+	}
+
+	/**
+	 * In place check : O(n) time and O(1) space
+	 * @param takeOutOrders
+	 * @param dineInOrders
+	 * @param servedOrders
+	 * @return
+	 */
+	public static boolean isFirstComeFirstServedApproach(int[] takeOutOrders, int[] dineInOrders, int[] servedOrders) {
+
+		// takeOutOrders + dineInOrders = servedOrders
+		if(takeOutOrders.length+dineInOrders.length != servedOrders.length){
+			return false;
+		}
+
+		int takeOutOrdersIdx=0;
+		int dineInOrdersIdx=0;
+		int servedOrdersIdx=0;
+
+		while(servedOrdersIdx<servedOrders.length){
+			boolean isTakeOutOrdersCompleted = (takeOutOrdersIdx>=takeOutOrders.length);
+			boolean isDineInOrdersCompleted = (dineInOrdersIdx>=dineInOrders.length);
+
+			if(!isTakeOutOrdersCompleted && (isDineInOrdersCompleted ||
+							takeOutOrders[takeOutOrdersIdx]<=dineInOrders[dineInOrdersIdx])){
+				if(servedOrders[servedOrdersIdx]!=takeOutOrders[takeOutOrdersIdx]){
+					return false;
+				}
+				takeOutOrdersIdx++;
+			}
+			else {
+				if(servedOrders[servedOrdersIdx]!=dineInOrders[dineInOrdersIdx]){
+					return false;
+				}
+				dineInOrdersIdx++;
+			}
+			servedOrdersIdx++;
+		}
+		return true;
+	}
+
+	/**
 	 * New array creation : O(n) time and O(n) space
 	 * @param takeOutOrders
 	 * @param dineInOrders
@@ -84,45 +168,5 @@ public class CafeOrderChecker {
 			mergedArrayIndex++;
 		}
 		return mergedArray;
-	}
-
-	/**
-	 * In place check : O(n) time and O(1) space
-	 * @param takeOutOrders
-	 * @param dineInOrders
-	 * @param servedOrders
-	 * @return
-	 */
-	public static boolean isFirstComeFirstServed(int[] takeOutOrders, int[] dineInOrders, int[] servedOrders) {
-
-		// takeOutOrders + dineInOrders = servedOrders
-		if(takeOutOrders.length+dineInOrders.length != servedOrders.length){
-			return false;
-		}
-
-		int takeOutOrdersIdx=0;
-		int dineInOrdersIdx=0;
-		int servedOrdersIdx=0;
-
-		while(servedOrdersIdx<servedOrders.length){
-			boolean isTakeOutOrdersCompleted = (takeOutOrdersIdx>=takeOutOrders.length);
-			boolean isDineInOrdersCompleted = (dineInOrdersIdx>=dineInOrders.length);
-
-			if(!isTakeOutOrdersCompleted && (isDineInOrdersCompleted ||
-							takeOutOrders[takeOutOrdersIdx]<=dineInOrders[dineInOrdersIdx])){
-				if(servedOrders[servedOrdersIdx]!=takeOutOrders[takeOutOrdersIdx]){
-					return false;
-				}
-				takeOutOrdersIdx++;
-			}
-			else {
-				if(servedOrders[servedOrdersIdx]!=dineInOrders[dineInOrdersIdx]){
-					return false;
-				}
-				dineInOrdersIdx++;
-			}
-			servedOrdersIdx++;
-		}
-		return true;
 	}
 }

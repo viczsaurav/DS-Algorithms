@@ -6,7 +6,7 @@ import static interviewCake.MergeCookies.mergeArrays;
 import static interviewCake.ReverseWords.reverseWords;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class TesMergeCookies {
+public class TestMergeCookies {
 
 	// tests
 

@@ -1,6 +1,18 @@
 package interviewCake;
 
 public class HighestProductOf3 {
+	/**
+	 * Given an array of integers, find the highest product you can get from three of the integers.
+	 *
+	 * The input arrayOfInts will always have at least three integers.
+	 *
+	 * Gotchas
+	 * Does your method work with negative numbers? If arrayOfInts is [-10, -10, 1, 3, 2][−10,−10,1,3,2] we should return 300300 (which we get by taking -10 * -10 * 3−10∗−10∗3).
+	 *
+	 * We can do this in O(n)O(n) time and O(1)O(1) space.
+	 * @param intArray
+	 * @return
+	 */
 	public static int highestProductOf3(int[] intArray) {
 
 		if (intArray.length <3)

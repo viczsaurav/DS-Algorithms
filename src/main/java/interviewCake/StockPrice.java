@@ -28,6 +28,23 @@ public class StockPrice {
 
 	public static int getMaxProfit(int[] stockPrices) {
 
+		int min = stockPrices[0];
+		int maxProfit = stockPrices[1] - min;
+
+
+		for(int i=1;i<stockPrices.length;i++){
+			// see what our profit would be if we bought at the min price and sold at the current price
+			int potentialProfit = stockPrices[i] - min;
+
+			maxProfit = Math.max(maxProfit,potentialProfit);
+			min = Math.min(min, stockPrices[i]);
+		}
+
+		return maxProfit;
+
+	}
+	public static int getMaxProfitWithIf(int[] stockPrices) {
+
 		// handled in test cases
 //		if (stockPrices.length < 2){
 //			throw new Exception("Atleast 2 prices required");
@@ -46,8 +63,7 @@ public class StockPrice {
 				// We can also just keep track of min/max for whole array, but always decreasing case is not handled then.
 				max = stockPrices[i+1];
 			}
-			if (maxProfit < (max-min))
-				maxProfit = (max-min);
+			maxProfit = Math.max(maxProfit, (max-min));
 		}
 
 		return maxProfit;

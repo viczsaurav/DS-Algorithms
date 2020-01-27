@@ -24,10 +24,23 @@ public class ProductOfAllOtherNumbers {
 
 	public static int[] getProductsOfAllIntsExceptAtIndex(int[] intArray) {
 
-		// make an array of the products
+		int size = intArray.length;
+		if (size<2)
+			throw new IllegalArgumentException("At least 2 required");
 
+		int[] productArray = new int[size];
+		productArray[0] = 1;
 
-		return new int[intArray.length];
+		for(int i=0; i<size-1;i++){
+			productArray[i+1] = productArray[i] * intArray[i];
+		}
+
+		int productSofar =1;
+		for (int i=size-1;i>=0;i--){
+			productArray[i] *= productSofar;
+			productSofar *= intArray[i];
+		}
+		return productArray;
 	}
 }
 

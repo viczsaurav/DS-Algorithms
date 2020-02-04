@@ -37,10 +37,23 @@ public class RotationPoint {
 	 */
 
 	public static int findRotationPoint(String[] words) {
+		int start = 0;
+		int end = words.length-1;
 
-		// find the rotation point in the array
-
-
-		return 0;
+		while(start<end){
+			int mid = (start+end)/2;
+			//No rotation
+			if (lesserThan(words[mid],words[0]))
+				start=mid;
+			else
+				end=mid;
+			if (start+1 == end){
+				break;
+			}
+		}
+		return end;
+	}
+	public static boolean lesserThan(String s1, String s2){
+		return (s1.compareToIgnoreCase(s2)>=0);
 	}
 }

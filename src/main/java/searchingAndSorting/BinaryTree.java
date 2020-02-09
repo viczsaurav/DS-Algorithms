@@ -2,7 +2,7 @@ package searchingAndSorting;
 
 public class BinaryTree{
 
-    private class Node{
+    class Node{
         int value;
         Node left;
         Node right;
@@ -43,29 +43,5 @@ public class BinaryTree{
             return current;
         }
         return current;
-    }
-
-    public void preOrderTraversal(Node node){
-        if(node!=null){
-            System.out.print(node.value + "\t");
-            inOrderTraversal(node.left);
-            inOrderTraversal(node.right);
-        }
-    }
-
-    public void inOrderTraversal(Node node){
-        if(node!=null){
-            inOrderTraversal(node.left);
-            System.out.print(node.value + "\t");
-            inOrderTraversal(node.right);
-        }
-    }
-
-    public void postOrderTraversal(Node node){
-        if(node!=null){
-            inOrderTraversal(node.left);
-            inOrderTraversal(node.right);
-            System.out.print(node.value + "\t");
-        }
     }
 }

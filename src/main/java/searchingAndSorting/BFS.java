@@ -10,6 +10,10 @@ public class BFS {
         int[] intArray = {17, 11, 67, 3, 93, 23, 29, 97, 53};
         BinaryTree tree = new BinaryTree();
         tree.createBinaryTree(intArray);
+        tree.preOrderTraversal(tree.getRootNode());
+        System.out.println("");
         tree.inOrderTraversal(tree.getRootNode());
+        System.out.println("");
+        tree.postOrderTraversal(tree.getRootNode());
     }
 }

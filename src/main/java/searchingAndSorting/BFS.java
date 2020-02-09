@@ -2,7 +2,11 @@ package searchingAndSorting;
 
 public class BFS {
 
-    public boolean breadthFirstSearch(BinaryTree tree, int searchValue){
+    public boolean breadthFirstSearchWithQueue(BinaryTree tree, int searchValue){
+        return false;
+    }
+
+    public boolean breadthFirstSearchRecursive(BinaryTree tree, int searchValue){
         return false;
     }
 

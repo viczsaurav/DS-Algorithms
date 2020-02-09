@@ -1,4 +1,4 @@
-package searchingAndSorting;
+package searchingSortingDataStructures;
 
 public class BFS {
 

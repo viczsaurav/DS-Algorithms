@@ -18,7 +18,7 @@ public class FindRepeat {
 	 *
 	 * We're going to run this method on our new, super-hip MacBook Pro With Retina Display™.
 	 * Thing is, the damn thing came with the RAM soldered right to the motherboard, so we can't upgrade our RAM.
-	 * So we need to optimize for space!
+	 * So we need to optimize for space! => Preferably O(1)
 	 * @param numbers
 	 * @return
 	 */
@@ -26,6 +26,7 @@ public class FindRepeat {
 	public static int findRepeat(int[] numbers) {
 
 		// find a number that appears more than once
+
 
 
 		return 0;

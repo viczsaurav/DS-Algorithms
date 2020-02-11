@@ -2,18 +2,6 @@ package searchingSortingDataStructures;
 
 public class BinaryTree{
 
-    class Node{
-        int value;
-        Node left;
-        Node right;
-
-        Node (int value){
-            this.value = value;
-            this.left = null;
-            this.right = null;
-        }
-    }
-
     private Node root;
 
     public Node getRootNode(){
@@ -43,5 +31,17 @@ public class BinaryTree{
             return current;
         }
         return current;
+    }
+}
+
+class Node{
+    int value;
+    Node left;
+    Node right;
+
+    Node (int value){
+        this.value = value;
+        this.left = null;
+        this.right = null;
     }
 }

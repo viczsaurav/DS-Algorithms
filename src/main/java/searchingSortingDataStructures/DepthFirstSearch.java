@@ -6,7 +6,7 @@ public class DepthFirstSearch {
 	 * DFS - Pre order traversal using DFS recursion
 	 * @param node
 	 */
-	public static void preOrderTraversal(BinaryTree.Node node){
+	public static void preOrderTraversal(Node node){
 		if(node!=null){
 			System.out.print(node.value + "\t");
 			preOrderTraversal(node.left);
@@ -18,7 +18,7 @@ public class DepthFirstSearch {
 	 * DFS - In order traversal using DFS recursion
 	 * @param node
 	 */
-	public static void inOrderTraversal(BinaryTree.Node node){
+	public static void inOrderTraversal(Node node){
 		if(node!=null){
 			inOrderTraversal(node.left);
 			System.out.print(node.value + "\t");
@@ -30,7 +30,7 @@ public class DepthFirstSearch {
 	 * DFS - Post order traversal using DFS recursion
 	 * @param node
 	 */
-	public static void postOrderTraversal(BinaryTree.Node node){
+	public static void postOrderTraversal(Node node){
 		if(node!=null){
 			postOrderTraversal(node.left);
 			postOrderTraversal(node.right);

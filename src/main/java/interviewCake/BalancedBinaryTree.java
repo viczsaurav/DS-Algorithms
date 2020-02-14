@@ -1,5 +1,7 @@
 package interviewCake;
 
+import java.util.Stack;
+
 public class BalancedBinaryTree {
 	/**
 	 * Write a function to see if a binary tree ↴ is "superbalanced" (a new tree property we just made up).
@@ -28,12 +30,38 @@ public class BalancedBinaryTree {
 		}
 	}
 
+	private static class NodeLevelPair {
+		BinaryTreeNode node;
+		int level;
+
+		NodeLevelPair(BinaryTreeNode node, int level){
+			this.node = node;
+			this.level = level;
+		}
+	}
 
 	public static boolean isBalanced(BinaryTreeNode treeRoot) {
 
-		// determine if the tree is superbalanced
+		Stack<NodeLevelPair> stack = new Stack<>();
+		stack.push(new NodeLevelPair(treeRoot,0));
+		int min=Integer.MAX_VALUE;
+		int max=Integer.MIN_VALUE;
 
+		while(!stack.empty()) {
+			NodeLevelPair pairNode= stack.pop();
+			BinaryTreeNode node = pairNode.node;
+			int level = pairNode.level;
 
-		return false;
+			if(node.left!=null)
+				stack.push(new NodeLevelPair(node.left,level+1));
+			if(node.right!=null)
+				stack.push(new NodeLevelPair(node.right,level+1));
+			if(node.left==null && node.right==null) {
+				min = Math.min(min,level);
+				max = Math.max(max,level);
+			}
+			if ((max-min)>1)	return false;
+		}
+		return true;
 	}
 }

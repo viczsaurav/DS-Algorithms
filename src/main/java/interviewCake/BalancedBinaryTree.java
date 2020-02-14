@@ -1,5 +1,7 @@
 package interviewCake;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 public class BalancedBinaryTree {
@@ -46,20 +48,30 @@ public class BalancedBinaryTree {
 
 	public static boolean isBalanced(BinaryTreeNode treeRoot) {
 
+		// Using Stack here, but a Deque is recommended. Changes are marked as below
 		Stack<NodeLevelPair> stack = new Stack<>();
 		stack.push(new NodeLevelPair(treeRoot,0));
+
+		// Deque Implementation (Double Ended Queue)
+//		Deque<NodeLevelPair> deque = new ArrayDeque<>();
+//		deque.offerFirst(new NodeLevelPair(treeRoot,0));
+
 		int min=Integer.MAX_VALUE;
 		int max=Integer.MIN_VALUE;
 
 		while(!stack.empty()) {
+//		while(!deque.isEmpty()) {
 			NodeLevelPair pairNode= stack.pop();
+//			NodeLevelPair pairNode= deque.pollFirst();
 			BinaryTreeNode node = pairNode.node;
 			int level = pairNode.level;
 
 			if(node.left!=null)
 				stack.push(new NodeLevelPair(node.left,level+1));
+//				deque.offerFirst(new NodeLevelPair(node.left,level+1));
 			if(node.right!=null)
 				stack.push(new NodeLevelPair(node.right,level+1));
+//				deque.offerFirst(new NodeLevelPair(node.right,level+1));
 			if(node.left==null && node.right==null) {
 				min = Math.min(min,level);
 				max = Math.max(max,level);

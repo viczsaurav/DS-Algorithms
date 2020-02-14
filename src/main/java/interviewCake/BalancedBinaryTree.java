@@ -30,6 +30,10 @@ public class BalancedBinaryTree {
 		}
 	}
 
+	/**
+	 * Remember to use a new static class with *level/depth* information
+	 * when we require to keep track of it. Keeping a single height variable can result in errors
+	 */
 	private static class NodeLevelPair {
 		BinaryTreeNode node;
 		int level;

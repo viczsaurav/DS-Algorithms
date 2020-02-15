@@ -42,7 +42,7 @@ public class BSTChecker {
 	public static boolean checkNodeValue(BinaryTreeNode node, int lower, int upper) {
 
 		if (node==null) return true;
-		if(node.value< lower || node.value > upper)	return false;
+		if(node.value<= lower || node.value > upper)	return false;
 		return checkNodeValue(node.left, lower, node.value) &&
 					 checkNodeValue(node.right, node.value, upper);
 	}

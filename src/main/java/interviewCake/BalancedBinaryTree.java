@@ -11,27 +11,6 @@ public class BalancedBinaryTree {
 	 * A tree is "superbalanced" if the difference between the depths of any two leaf nodes is no greater than one.
 	 */
 
-	public static class BinaryTreeNode {
-
-		public int value;
-		public BinaryTreeNode left;
-		public BinaryTreeNode right;
-
-		public BinaryTreeNode(int value) {
-			this.value = value;
-		}
-
-		public BinaryTreeNode insertLeft(int leftValue) {
-			this.left = new BinaryTreeNode(leftValue);
-			return this.left;
-		}
-
-		public BinaryTreeNode insertRight(int rightValue) {
-			this.right = new BinaryTreeNode(rightValue);
-			return this.right;
-		}
-	}
-
 	/**
 	 * Remember to use a new static class with *level/depth* information
 	 * when we require to keep track of it. Keeping a single height variable can result in errors

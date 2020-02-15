@@ -1,6 +1,6 @@
 package interviewCake;
 
-import interviewCake.BalancedBinaryTree.BinaryTreeNode;
+import interviewCake.BinaryTreeNode;
 import static interviewCake.BalancedBinaryTree.isBalanced;
 import org.junit.jupiter.api.Test;
 

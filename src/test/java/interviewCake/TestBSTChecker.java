@@ -24,6 +24,11 @@ public class TestBSTChecker {
 		assertTrue(result);
 	}
 
+	/**
+	 *                  50
+	 *               30    80
+	 *             20  60 70 90
+	 */
 	@Test
 	public void bothSubtreesValidTest() {
 		final BinaryTreeNode root = new BinaryTreeNode(50);

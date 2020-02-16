@@ -36,7 +36,8 @@ public class BSTChecker {
 
 
 	public static boolean isBinarySearchTree(BinaryTreeNode root) {
-		return checkNodeValue(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+//		return checkNodeValue(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+		return checkInOrder(root);
 	}
 
 	public static boolean checkNodeValue(BinaryTreeNode node, int lower, int upper) {
@@ -45,6 +46,24 @@ public class BSTChecker {
 		if(node.value<= lower || node.value > upper)	return false;
 		return checkNodeValue(node.left, lower, node.value) &&
 					 checkNodeValue(node.right, node.value, upper);
+	}
+
+	/**
+	 * Checking if an in-order traversal of the tree is sorted is a great answer too.
+	 */
+
+	static BinaryTreeNode inOrderPrevNode;
+
+	public static boolean checkInOrder(BinaryTreeNode node) {
+		//TODO check all cases
+		// https://www.geeksforgeeks.org/a-program-to-check-if-a-binary-tree-is-bst-or-not/
+		if(node!=null){
+			if (!checkInOrder(node.left))	return false;
+			if(inOrderPrevNode!=null && node.value<= inOrderPrevNode.value) return false;
+			inOrderPrevNode = node;
+			return checkInOrder(node.right);
+		}
+		return true;
 	}
 
 }

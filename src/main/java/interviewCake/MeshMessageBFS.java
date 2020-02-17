@@ -4,7 +4,7 @@ import java.util.*;
 
 public class MeshMessageBFS {
 
-	// TODO remove Visited and use howWeReached keyset to check
+
 	public static String[] getPath(Map<String, String[]> graph, String startNode, String endNode) {
 
 		if(!graph.containsKey(startNode) ||
@@ -21,25 +21,20 @@ public class MeshMessageBFS {
 		Deque<String> nodes = new ArrayDeque<>();
 		nodes.offerLast(startNode);
 
-		Set<String> visited = new HashSet<>();
-		visited.add(startNode);
-
 		Map<String, String> howWeReached = new HashMap<>();
+		howWeReached.put(startNode,null);
 
 		while(!nodes.isEmpty()){
 			String node = nodes.pollFirst();
 			String[] neighbours = graph.get(node);
-
-			visited.add(node);
 
 			if(node.equals(endNode)){
 				return reconstructThePath(howWeReached, startNode, endNode);
 			}
 
 			for(String neighbor: neighbours){
-				if(!visited.contains(neighbor)){
+				if(!howWeReached.containsKey(neighbor)){
 					nodes.offerLast(neighbor);
-					visited.add(neighbor);
 					// Keep Track how we reached this node
 					howWeReached.put(neighbor,node);
 				}

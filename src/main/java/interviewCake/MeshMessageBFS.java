@@ -13,7 +13,8 @@ public class MeshMessageBFS {
 	 * How much work is a breadth-first search?
 	 *
 	 * In the worst case, we'll go through the BFS loop once for every node in the graph, since we only ever add each node to nodesToVisit once (we check howWeReachedNodes to see if we've already added a node before).
-	 * Each loop iteration involves a constant amount of work to dequeue the node and check if it's our end node. If we have nn nodes, then this portion of the loop is O(N).
+	 * Each loop iteration involves a constant amount of work to dequeue the node and check if it's our end node.
+	 * If we have N nodes, then this portion of the loop is O(N).
 	 *
 	 * But there's more to each loop iteration: we also look at the current node's neighbors.
 	 * Over all of the nodes in the graph, checking the neighbors is O(M), since it involves crossing each edge twice: once for each node at either end.
@@ -23,16 +24,16 @@ public class MeshMessageBFS {
 	 * BFS and DFS are common enough that it's often acceptable to just state their complexity as O(N+M).
 	 * Some interviewers might want you to derive it though, so definitely be ready in case they ask.
 	 *
-	 * What about backtracking to determine the shortest path? Handling each node in the path is O(1), and we could have at most NN nodes in our shortest path.
-	 * So, that's O(N)for building up the path. Then, it's another O(N)to reverse it. So, the total time complexity of our backtracking step is O(N).
+	 * What about backtracking to determine the shortest path? Handling each node in the path is O(1), and we could have at most N nodes in our shortest path.
+	 * So, that's O(N)for building up the path. Then, it's another O(N)to reverse it.
+	 * So, the total time complexity of our backtracking step is O(N).
 	 *
 	 * Putting these together, the time complexity of our entire algorithm is O(N+M).
 	 *
-	 * What about space complexity? The queue of nodes to visit, the mapping of nodes to previous nodes, and the final path ...
+	 * What about space complexity?
+	 * The queue of nodes to visit, the mapping of nodes to previous nodes, and the final path ...
 	 * they all store a constant amount of information per node. So, each data structure could take up to O(N) space if it stored information about all of our nodes. That means our overall space complexity is O(N).
 	 *
-	 *
-
 	 * @param graph
 	 * @param startNode
 	 * @param endNode

@@ -3,7 +3,7 @@ package searchingSortingDataStructures;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BFS {
+public class BreadthFirstSearchTree {
 
     public static boolean breadthFirstSearch(Node root, int searchValue){
 

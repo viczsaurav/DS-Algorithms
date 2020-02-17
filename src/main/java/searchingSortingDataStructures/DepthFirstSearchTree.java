@@ -1,6 +1,6 @@
 package searchingSortingDataStructures;
 
-public class DepthFirstSearch {
+public class DepthFirstSearchTree {
 
 	/**
 	 * DFS - Pre order traversal using DFS recursion

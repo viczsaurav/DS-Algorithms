@@ -35,8 +35,7 @@ public class EditDistance {
 		for (int j=1;j<editMatrix[0].length;j++){
 			for(int i=1;i<editMatrix.length;i++){
 
-				// When When char[i] = char[j]
-
+				// When char[i] = char[j]
 				if (origStr.charAt(i-1)==finalStr.charAt(j-1)){
 					editMatrix[i][j] = editMatrix[i-1][j-1];
 				}

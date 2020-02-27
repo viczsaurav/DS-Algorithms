@@ -1,12 +1,10 @@
 package cci;
 
-import java.util.Arrays;
-
 public class EditDistance {
 
 	/**
 	 *
-	 * Edit matrix will be like
+	 * Levenshtein Edit Distance matrix
 	 *
 	 * 	   ""	O R I G S T R
 	 * 	"" 0  1 2 3 4 5 6 7

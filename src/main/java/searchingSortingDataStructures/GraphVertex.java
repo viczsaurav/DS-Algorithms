@@ -5,11 +5,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class GraphNode {
+public class GraphVertex {
 	private String label;
-	private Set<GraphNode> neighbors;
+	private Set<GraphVertex> neighbors;
 
-	public GraphNode(String label) {
+	public GraphVertex(String label) {
 		this.label = label;
 		neighbors = new HashSet<>();
 	}
@@ -18,11 +18,11 @@ public class GraphNode {
 		return label;
 	}
 
-	public Set<GraphNode> getNeighbors() {
+	public Set<GraphVertex> getNeighbors() {
 		return Collections.unmodifiableSet(neighbors);
 	}
 
-	public void addNeighbor(GraphNode neighbor) {
+	public void addNeighbor(GraphVertex neighbor) {
 		neighbors.add(neighbor);
 	}
 
@@ -30,8 +30,8 @@ public class GraphNode {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		GraphNode graphNode = (GraphNode) o;
-		return Objects.equals(label, graphNode.label);
+		GraphVertex graphVertex = (GraphVertex) o;
+		return Objects.equals(label, graphVertex.label);
 	}
 
 	@Override

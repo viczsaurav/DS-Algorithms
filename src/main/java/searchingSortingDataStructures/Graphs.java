@@ -2,19 +2,19 @@ package searchingSortingDataStructures;
 
 import java.util.*;
 
-class Graphs {
+class Graphs<T> {
 
-	private Set<GraphVertex> graph;
+	private Set<GraphVertex<T>> graph;
 
 	public Graphs(){
 		graph = new HashSet<>();
 	}
 
-	public void addVertex(GraphVertex vertex){
+	public void addVertex(GraphVertex<T> vertex){
 		this.graph.add(vertex);
 	}
 
-	public Set<GraphVertex> getAllVertices(){
+	public Set<GraphVertex<T>> getAllVertices(){
 		return Collections.unmodifiableSet(this.graph);
 	}
 

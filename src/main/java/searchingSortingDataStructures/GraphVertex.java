@@ -5,33 +5,33 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class GraphVertex {
-	private String label;
-	private Set<GraphVertex> neighbors;
+public class GraphVertex<T> {
+	private T label;
+	private Set<GraphVertex<T>> neighbors;
 
-	public GraphVertex(String label) {
+	public GraphVertex(T label) {
 		this.label = label;
 		neighbors = new HashSet<>();
 	}
 
-	public String getLabel() {
-		return label;
+	public T getLabel() {
+		return this.label;
 	}
 
-	public Set<GraphVertex> getNeighbors() {
-		return Collections.unmodifiableSet(neighbors);
+	public Set<GraphVertex<T>> getNeighbors() {
+		return Collections.unmodifiableSet(this.neighbors);
 	}
 
 	public void addNeighbor(GraphVertex neighbor) {
-		neighbors.add(neighbor);
+		this.neighbors.add(neighbor);
 	}
 
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		GraphVertex graphVertex = (GraphVertex) o;
-		return Objects.equals(label, graphVertex.label);
+		GraphVertex<?> that = (GraphVertex<?>) o;
+		return Objects.equals(label, that.label);
 	}
 
 	@Override

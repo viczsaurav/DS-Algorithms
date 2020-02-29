@@ -1,11 +1,26 @@
 package searchingSortingDataStructures;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 class Graphs {
+
+	private Set<GraphVertex> graph;
+
+	public Graphs(){
+		graph = new HashSet<>();
+	}
+
+	public void addVertex(GraphVertex vertex){
+		this.graph.add(vertex);
+	}
+
+	public Set<GraphVertex> getAllVertices(){
+		return Collections.unmodifiableSet(this.graph);
+	}
+
+	public int getGraphSize(){
+		return this.graph.size();
+	}
 
 	/**
 	 * Ways to create Graphs => List + Adjacency List + Matrix

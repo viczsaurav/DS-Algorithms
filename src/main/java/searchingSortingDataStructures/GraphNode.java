@@ -11,7 +11,7 @@ public class GraphNode {
 
 	public GraphNode(String label) {
 		this.label = label;
-		neighbors = new HashSet<GraphNode>();
+		neighbors = new HashSet<>();
 	}
 
 	public String getLabel() {

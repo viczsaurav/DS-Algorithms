@@ -16,7 +16,7 @@ public class TestStringPermutation {
 	@Test
 	public void emptyStringTest() {
 		final Set<String> expected = new HashSet<>(Arrays.asList(""));
-		final Set<String> actual = ç("");
+		final Set<String> actual = getPermutations("");
 		assertEquals(expected, actual);
 	}
 

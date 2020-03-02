@@ -42,8 +42,8 @@ public class Coins {
 
 		for(int n: inputs){
 			Coins coin = new Coins(n);
-			System.out.println("Solving for n= "+ n);
-			coin.solveCoinsRecursive(n);
+			System.out.print("Solving for n= "+ n + ", Max coins = ");
+			System.out.println(coin.solveCoinsRecursive(n));
 		}
 	}
 

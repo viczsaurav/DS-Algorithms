@@ -1,14 +1,14 @@
 package dynamicProgramming;
 
+import java.util.Arrays;
+
 public class Coins {
 
 	int[] maxValues;
 
 	public Coins(int n){
 		maxValues = new int[n+1];
-		for (int i=0; i<=n;i++){
-			maxValues[i]=-1;
-		}
+		Arrays.fill(maxValues, -1);
 	}
 	/**
 	 * In Byteland they have a very strange monetary system.
@@ -59,3 +59,5 @@ public class Coins {
 		return maxValues[n]= Math.max(maxValues[n], Math.max(n, value));
 	}
 }
+
+

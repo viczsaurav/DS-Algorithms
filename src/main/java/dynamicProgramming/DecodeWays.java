@@ -26,7 +26,7 @@ public class DecodeWays {
 		Arrays.fill(decodeValues,-1);
 	}
 
- public int decode(String s, int currIdx){
+ public int decodeRecursive(String s, int currIdx){
 	 if (currIdx >= s.length()) {
 		 return 1; // "" is a valid decomposition
 	 }
@@ -42,7 +42,7 @@ public class DecodeWays {
 				String snippet = s.substring(currIdx, currIdx + i);
 
 				if (isValid(snippet)) {
-					count += decode(s, currIdx + i);
+					count += decodeRecursive(s, currIdx + i);
 				}
 			}
 		}
@@ -60,7 +60,7 @@ public class DecodeWays {
  public static void main(String [] a){
  	 String decodeString = "1234";
 	 DecodeWays d = new DecodeWays(decodeString);
-	 System.out.println(d.decode(decodeString,0));
+	 System.out.println(d.decodeRecursive(decodeString,0));
  }
 
 }

@@ -1,5 +1,5 @@
 package cci;
-/*
+/**
 
 Given an array of stock prices for a day, sorted in time order,  like
 

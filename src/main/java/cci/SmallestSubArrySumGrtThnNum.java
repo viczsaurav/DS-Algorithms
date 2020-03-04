@@ -34,7 +34,7 @@ public class SmallestSubArrySumGrtThnNum {
 
 	/**
 	 * Finding smallest subarray in Quadratic time - O(n^2) 
-	 * @param arry
+	 * @param arr
 	 * @param n
 	 * @return
 	 */
@@ -62,7 +62,7 @@ public class SmallestSubArrySumGrtThnNum {
 
 	/**
 	 * Finding smallest subarray in Linear time - O(2n)=~ O(n)
-	 * @param arry
+	 * @param arr
 	 * @param n
 	 * @return
 	 */

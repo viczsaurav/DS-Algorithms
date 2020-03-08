@@ -46,10 +46,7 @@ public class MaimizeProfit {
 		for (int i = 1; i < stock.length; i++) {
 			if (stock[i]> max) {
 				max= stock[i];
-				int diff = max-min;
-				if (maxDiff < diff)	
-					maxDiff = diff;
-				
+				maxDiff = Math.max(maxDiff, (max-min));
 			}
 			else {
 				min = stock[i];

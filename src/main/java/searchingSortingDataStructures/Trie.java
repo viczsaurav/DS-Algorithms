@@ -68,6 +68,7 @@ public class Trie {
 		return current.endOfWord;
 	}
 
+	// Recursive Search
 	 public boolean searchRecursive(String word){
 		return searchRecursive(root, word);
 	 }
@@ -78,10 +79,44 @@ public class Trie {
 		}
 		char ch = word.charAt(0);
 		TrieNode node =  current.children.get(ch);
-		if(node== null)
-			return false;
+		if(node== null) 	return false;
 
 		 return searchRecursive(node, word.substring(1));
 	 }
+
+
+	 // Recursive Delete
+
+	public void delete(String word){
+		delete(root,word);
+	}
+
+	private boolean delete(TrieNode current, String word){
+		if(word.length()==0){
+			// If end of word reached, check if its the last of word
+			if(!current.endOfWord) 	return false;
+
+			// Reached enOfWord, mark to delete
+			current.endOfWord=false;
+			//if current has no other mapping then return true (indication to
+			// calling function that this reference can be deleted from map)
+			return current.children.size()==0;
+		}
+
+		char ch = word.charAt(0);
+		TrieNode node = current.children.get(ch);
+		if (node==null) 	return false;
+
+		// Check if the current Node is eligible for delete (means last Node with endOfWord=true)
+		boolean canDeleteCurrentNode = delete(node,word.substring(1));
+
+		// If returned true, delete the mapping of character and TrieNode reference from map
+		if(canDeleteCurrentNode){
+			current.children.remove(ch);
+			// return true if no mappings are left in the map
+			return current.children.size()==0;
+		}
+		return false;
+	}
 
 }

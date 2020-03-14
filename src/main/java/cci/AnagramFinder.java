@@ -15,7 +15,7 @@ import java.util.*;
  *
  * Due to above assumptions, in the current approach:
  *  - We save all dictionary words in a set
- *  - We generate all anagrams of a given input string
+ *  - We generate all permutations of a given input string
  *  - We iterate through this anagram list to check for presence dictionary set.
  *  - Return and print the found anagrams.
  */
@@ -104,7 +104,7 @@ public class AnagramFinder {
 	 */
 	private static List<String> fetchAnagramsFromDictionary(String word){
 		List<String> foundAnagrams = new ArrayList<>();
-		List<String> allAnagrams = getAllAnagramsForWord(word);
+		Set<String> allAnagrams = getAllAnagramsForWord(word);
 
 		for (String anagram: allAnagrams){
 			if(dictionary.contains(anagram)){
@@ -115,14 +115,30 @@ public class AnagramFinder {
 	}
 
 	/**
-	 * Generate all anagrams of a given word
+	 * Get All permutations of String
 	 * @param word
 	 * @return
 	 */
-	private static List<String> getAllAnagramsForWord(String word){
-		List<String> anagrams = new ArrayList<>();
-		anagrams.add(word);
-		return anagrams;
+	private static Set<String> getAllAnagramsForWord(String word  ) {
+
+		// handle input string
+		if (word.length()<=1)
+			return new HashSet<>(Collections.singletonList(word));
+
+		char lastCharOfString = word.charAt(word.length()-1);
+		String stringExceptLastChar = word.substring(0, word.length()-1);
+
+		Set<String> allPermutationsExceptLastString = getAllAnagramsForWord(stringExceptLastChar);
+
+		Set<String> allPermutations = new HashSet<>();
+		for (String str: allPermutationsExceptLastString){
+			for(int position=0; position<=stringExceptLastChar.length();position++){
+				// e.g cats => add s to cat => [s + cat, c + s + at,  ca + s + t, cat + s]
+				String permutation = str.substring(0,position) + lastCharOfString + str.substring(position);
+				allPermutations.add(permutation);
+			}
+		}
+		return allPermutations;
 	}
 
 	/**

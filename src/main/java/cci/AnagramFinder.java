@@ -119,7 +119,7 @@ public class AnagramFinder {
 	 * @param word
 	 * @return
 	 */
-	private static Set<String> getAllAnagramsForWord(String word  ) {
+	private static Set<String> getAllAnagramsForWord(String word) {
 
 		// handle input string
 		if (word.length()<=1)

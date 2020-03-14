@@ -39,8 +39,8 @@ public class AnagramFinder {
 				System.out.print("\nAnagramFinder> ");
 				input = scanner.nextLine();  // Read user input
 
-				if(input.split(" ").length>1){
-					System.out.println("Multi-word search is not supported, skipping...");
+				if(input.length()==0 || input.split(" ").length>1){
+					System.out.println("Enter valid input, skipping...");
 					continue;
 				}
 				if (!input.equalsIgnoreCase(EXIT_STR)){

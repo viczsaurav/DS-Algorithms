@@ -8,26 +8,24 @@ import java.util.*;
  * This java program lets you find all Anagrams of an input string present in the dictionary.
  *
  * The assumption here is:
- *  - It will be used as single user interface
- *  - It will be used sparsely.
+ *  - Distributed
+ *  - High usage
  *  - Multi-word lines in dictionary must be skipped
- *  - Search input string will not be too long.
+ *
  *
  * Due to above assumptions, in the current approach:
- *  - We save all dictionary words in a set
- *  - We generate all permutations of a given input string
- *  - We iterate through this anagram list to check for presence dictionary set.
+ *  - We save all dictionary words in a HashMap with Key => Hash(string) and Value => List<String>
  *  - Return and print the found anagrams.
  */
 
-public class AnagramFinderV1 {
+public class AnagramFinderV2 {
 
 	private static final Set<String> dictionary =  new HashSet<>();
 	private static final String EXIT_STR = "EXIT";
 
 	public static void main(String[] args) throws Exception{
 
-		System.out.println("\nWelcome to the Anagram Finder V1\n--------------------------------");
+		System.out.println("\nWelcome to the Anagram Finder V2\n--------------------------------");
 
 		// Populate the dictionary Set
 		readDictionary(args);

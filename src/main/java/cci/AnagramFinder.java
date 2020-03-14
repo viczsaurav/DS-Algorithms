@@ -81,6 +81,7 @@ public class AnagramFinder {
 			}
 		}
 		catch(IOException e){
+			System.out.println("Error while processing dictionary file: "+ e.getMessage());
 			throw e;
 		}
 		displayExecutionTime("Dictionary Loaded", startTime);

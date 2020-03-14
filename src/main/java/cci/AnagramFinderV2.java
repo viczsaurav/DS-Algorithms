@@ -1,16 +1,26 @@
 package cci;
 
-import java.io.*;
-import java.net.URL;
-import java.util.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 /**
  * This java program lets you find all Anagrams of an input string present in the dictionary.
  *
  * The assumption here is:
- *  - Distributed
  *  - High usage
  *  - Multi-word lines in dictionary must be skipped
+ *  - No special characters, digits and spaces allowed
  *
  *
  * Due to above assumptions, in the current approach:
@@ -20,29 +30,35 @@ import java.util.*;
 
 public class AnagramFinderV2 {
 
-	private static final Set<String> dictionary =  new HashSet<>();
 	private static final String EXIT_STR = "EXIT";
 
+	private static final Map<Long, List<String>> dictionary =  new ConcurrentHashMap<>();
+	private static Pattern validStringPattern;
+
+	// Constructor
+	public AnagramFinderV2(String fileName) throws Exception{
+		validStringPattern = Pattern.compile("^[a-zAA-Z]*");
+		readDictionary(fileName, validStringPattern);
+	}
+
 	public static void main(String[] args) throws Exception{
-
 		System.out.println("\nWelcome to the Anagram Finder V2\n--------------------------------");
-
-		// Populate the dictionary Set
-		readDictionary(args);
+		if(args.length<1){
+			throw new IllegalArgumentException("Please provide the input dictionary..");
+		}
+		AnagramFinderV2 finder = new AnagramFinderV2(args[0]);
 
 		// User input
 		try (Scanner scanner = new Scanner(System.in)) {
 			String input;  // Read user input
 			while(true){
-				System.out.print("\nAnagramFinderV1> ");
+				System.out.print("\nAnagramFinderV2> ");
 				input = scanner.nextLine();  // Read user input
 
-				if(input.length()==0 || input.split(" ").length>1){
+				if(!isValidString(input, validStringPattern)){
 					System.out.println("Enter valid input, skipping...");
-					continue;
-				}
-				if (!input.equalsIgnoreCase(EXIT_STR)){
-					processInput(input);
+				} else if (!input.equalsIgnoreCase(EXIT_STR)){
+					finder.findAnagrams(input);
 				} else {
 					break;
 				}
@@ -53,30 +69,27 @@ public class AnagramFinderV2 {
 
 	/**
 	 * Read dictionary and populate the set
-	 * @param args
-	 * @throws FileNotFoundException
-	 * @throws Exception
+	 * Time complexity: O(MN) where N = number of words, M = length of words
+	 * Space Complexity: O(N+M)
+	 * @param fileName
+	 * @throws IOException
 	 */
-	private static void readDictionary(String[] args) throws IOException {
-		if(args.length<1){
-			throw new IllegalArgumentException("Please provide the input dictionary..");
+	private static void readDictionary(String fileName, Pattern validStringPattern) throws IOException {
+		long startTime = System.currentTimeMillis();
+
+		Path path = Paths.get(fileName);
+		if(path==null) {
+			throw new FileNotFoundException("Cannot find file in current folder: "+ fileName);
 		}
 
-		URL path = AnagramFinderV1.class.getResource(args[0]);
-		if(path==null) {
-			throw new FileNotFoundException("Cannot find file in current folder: "+ args[0]);
-		}
-		File f = new File(path.getFile());
-		String st;
-		long startTime = System.currentTimeMillis();
-		try(BufferedReader reader = new BufferedReader(new FileReader(f));){
-			while ((st = reader.readLine()) != null) {
-				if(st.split(" ").length>1){
-					System.out.println("Multi-word not supported: ["+ st + "], skipping...");
-				} else {
-					dictionary.add(st.toLowerCase());
-				}
-			}
+		// Processing dictionary
+		try(Stream<String> lines = Files.lines(path)){
+			lines.parallel()
+					.filter(word -> isValidString(word, validStringPattern))
+					.map(String::toLowerCase)
+					.forEach(word -> dictionary.compute(getStringIdentifier(word),
+									(k,v) -> (v==null)? new ArrayList<>():v)
+									.add(word));
 		}
 		catch(IOException e){
 			System.out.println("Error while processing dictionary file: "+ e.getMessage());
@@ -89,55 +102,53 @@ public class AnagramFinderV2 {
 	 * Process each user input string
 	 * @param word
 	 */
-	private static void processInput(String word) {
+	private void findAnagrams(String word) {
 		long startTime = System.currentTimeMillis();
-		List<String> foundAnagrams = fetchAnagramsFromDictionary(word);
+		List<String> foundAnagrams = this.fetchAnagramsFromDictionary(word);
 		displayExecutionTime(foundAnagrams.size() + " Anagrams found for " + word, startTime);
 		System.out.println(String.join(",", foundAnagrams));
 	}
 
 	/**
 	 * fetch all found anagrams from the dictionary
-	 * @param word
-	 * @return
+	 * Time complexity: O(M)
+	 *
+	 * @param word String
+	 * @return boolean
 	 */
-	private static List<String> fetchAnagramsFromDictionary(String word){
-		List<String> foundAnagrams = new ArrayList<>();
-		Set<String> allAnagrams = getAllAnagramsForWord(word);
-
-		for (String anagram: allAnagrams){
-			if(dictionary.contains(anagram)){
-				foundAnagrams.add(anagram);
-			}
-		}
-		return foundAnagrams;
+	private List<String> fetchAnagramsFromDictionary(String word){
+		long identifier = getStringIdentifier(word);
+		List<String> foundWords = dictionary.get(identifier);
+		return foundWords!=null? foundWords: new ArrayList<>();
 	}
 
 	/**
-	 * Get All permutations of String
+	 * Validating String : No space, special characters and digit
+	 * @param word
+	 * @param validStringPattern
+	 * @return
+	 */
+	private static boolean isValidString(String word, Pattern validStringPattern){
+		Matcher matcher = validStringPattern.matcher(word);
+		return (word.length()>0 && matcher.matches());
+	}
+
+	/**
+	 * Converts each string to long indetifier O(M)
 	 * @param word
 	 * @return
 	 */
-	private static Set<String> getAllAnagramsForWord(String word) {
+	private static long getStringIdentifier(String word){
+		int[] primeArray = new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31,
+						37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103,
+						107, 109, 113 };
 
-		// handle input string
-		if (word.length()<=1)
-			return new HashSet<>(Collections.singletonList(word));
-
-		char lastCharOfString = word.charAt(word.length()-1);
-		String stringExceptLastChar = word.substring(0, word.length()-1);
-
-		Set<String> allPermutationsExceptLastString = getAllAnagramsForWord(stringExceptLastChar);
-
-		Set<String> allPermutations = new HashSet<>();
-		for (String str: allPermutationsExceptLastString){
-			for(int position=0; position<=stringExceptLastChar.length();position++){
-				// e.g cats => add s to cat => [s + cat, c + s + at,  ca + s + t, cat + s]
-				String permutation = str.substring(0,position) + lastCharOfString + str.substring(position);
-				allPermutations.add(permutation);
-			}
+		// Lowercase a has ASCII value 97 in decimal .So for z ,the value is 122 in decimal.
+		long product=1;
+		for(int ch: word.toCharArray()){
+			product *= primeArray[ch-'a'];
 		}
-		return allPermutations;
+		return product;
 	}
 
 	/**
@@ -147,7 +158,6 @@ public class AnagramFinderV2 {
 	 */
 	private static void displayExecutionTime(String activity, long startTime) {
 		long finishTime = System.currentTimeMillis();
-		double elapsedTime = (finishTime - startTime);
-		System.out.println(activity +" in " + elapsedTime + " ms");
+		System.out.println(activity +" in " + (finishTime - startTime) + " ms");
 	}
 }

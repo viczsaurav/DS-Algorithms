@@ -20,7 +20,7 @@ import java.util.*;
  *  - Return and print the found anagrams.
  */
 
-public class AnagramFinder {
+public class AnagramFinderV1 {
 
 	private static final Set<String> dictionary =  new HashSet<>();
 	private static final String EXIT_STR = "EXIT";
@@ -36,7 +36,7 @@ public class AnagramFinder {
 		try (Scanner scanner = new Scanner(System.in)) {
 			String input;  // Read user input
 			while(true){
-				System.out.print("\nAnagramFinder> ");
+				System.out.print("\nAnagramFinderV1> ");
 				input = scanner.nextLine();  // Read user input
 
 				if(input.length()==0 || input.split(" ").length>1){
@@ -64,7 +64,7 @@ public class AnagramFinder {
 			throw new IllegalArgumentException("Please provide the input dictionary..");
 		}
 
-		URL path = AnagramFinder.class.getResource(args[0]);
+		URL path = AnagramFinderV1.class.getResource(args[0]);
 		if(path==null) {
 			throw new FileNotFoundException("Cannot find file in current folder: "+ args[0]);
 		}

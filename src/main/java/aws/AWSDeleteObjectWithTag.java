@@ -64,6 +64,10 @@ public class AWSDeleteObjectWithTag {
 		List<Tag> updatedFileTagSet = new ArrayList<>();
 		updatedFileTagSet.add(new Tag(pipelineTag, pipelineValue));
 		updatedFileTagSet.add(new Tag(executionDateTag, executionDateValue));
+
+		for(Tag t: updatedFileTagSet){
+			System.out.println(t.getKey()+"->"+t.getValue());
+		}
 		return updatedFileTagSet;
 	}
 

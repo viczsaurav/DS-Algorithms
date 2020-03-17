@@ -20,7 +20,6 @@ import java.util.stream.Stream;
  *  - Multi-word lines in dictionary must be skipped
  *  - No special characters, digits and spaces allowed
  *
- *
  * Due to above assumptions, in the current approach:
  *  - We save all dictionary words in a HashMap with Key => Hash(string) and Value => List<String>
  *  - Return and print the found anagrams.
@@ -147,8 +146,7 @@ public class AnagramFinderV2 {
 	 */
 	private static long getStringIdentifier(String word){
 		int[] primeArray = new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31,
-						37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103,
-						107, 109, 113 };
+						37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101};
 
 		// Lowercase a has ASCII value 97 in decimal .So for z ,the value is 122 in decimal.
 		long product=1;

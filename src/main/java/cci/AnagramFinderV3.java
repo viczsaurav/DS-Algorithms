@@ -2,10 +2,11 @@ package cci;
 
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class AnagramFinderV3{
 
-	private static final HashMap<HashMap<Integer, Integer>,List<String>> dictionary = new HashMap<>();
+	private static final Map<HashMap<Integer, Integer>,List<String>> dictionary = new ConcurrentHashMap<>();
 
 	public static void main(String []args){
 		System.out.println("Hello World");

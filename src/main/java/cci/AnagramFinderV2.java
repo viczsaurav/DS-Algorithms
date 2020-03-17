@@ -5,9 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
@@ -74,7 +72,7 @@ public class AnagramFinderV2 {
 	 * @param fileName
 	 * @throws IOException
 	 */
-	private static void readDictionary(String fileName, Pattern validStringPattern) throws IOException {
+	private void readDictionary(String fileName, Pattern validStringPattern) throws IOException {
 		long startTime = System.currentTimeMillis();
 
 		Path path = Paths.get(fileName);
@@ -104,6 +102,7 @@ public class AnagramFinderV2 {
 	 */
 	private void findAnagrams(String word) {
 		long startTime = System.currentTimeMillis();
+
 		List<String> foundAnagrams = this.fetchAnagramsFromDictionary(word);
 		displayExecutionTime(foundAnagrams.size() + " Anagrams found for " + word, startTime);
 		System.out.println(String.join(",", foundAnagrams));
@@ -131,6 +130,14 @@ public class AnagramFinderV2 {
 	private static boolean isValidString(String word, Pattern validStringPattern){
 		Matcher matcher = validStringPattern.matcher(word);
 		return (word.length()>0 && matcher.matches());
+	}
+
+	private static HashMap<Integer, Integer> getIdentifierKey(String word){
+		HashMap<Integer, Integer> keyMap = new HashMap<>();
+		for(int ch: word.toCharArray()){
+			keyMap.compute(ch, (k,v)-> v==null?1:v+1);
+		}
+		return keyMap;
 	}
 
 	/**

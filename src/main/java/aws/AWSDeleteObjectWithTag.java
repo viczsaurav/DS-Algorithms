@@ -3,6 +3,7 @@ package aws;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.GetObjectTaggingRequest;
 import com.amazonaws.services.s3.model.GetObjectTaggingResult;
 import com.amazonaws.services.s3.model.Tag;
@@ -47,8 +48,10 @@ public class AWSDeleteObjectWithTag {
 				mgr.s3.deleteVersion(bucket, key, versionID);
 			}
 		}
-		catch(Exception e){
-			System.out.println("No Object Found: [ "+ path+" ]");
+		catch(AmazonS3Exception e){
+			System.out.println("No Object Found: [ "+ path+" ]" + e.getMessage());
+		} catch (Exception e){
+			throw e;
 		}
 	}
 

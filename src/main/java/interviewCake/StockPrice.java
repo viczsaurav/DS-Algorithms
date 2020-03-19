@@ -43,7 +43,7 @@ public class StockPrice {
 		return maxProfit;
 
 	}
-	public static int getMaxProfitWithIf(int[] stockPrices) {
+	public static int getMaxProfitWithIfAndBug(int[] stockPrices) {
 
 		// handled in test cases
 //		if (stockPrices.length < 2){

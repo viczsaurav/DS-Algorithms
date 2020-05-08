@@ -26,8 +26,10 @@ public class Trie {
 			TrieNode current = root;
 			for(char ch: word.toCharArray()){
 				TrieNode node = current.children.get(ch);
-				node = node==null? new TrieNode(): node;
-				current.children.put(ch,node);
+				if(node==null){
+					node = new TrieNode();
+					current.children.put(ch,node);
+				}
 				current=node;
 			}
 			// Word insert is complete, mark the endOfWord as true

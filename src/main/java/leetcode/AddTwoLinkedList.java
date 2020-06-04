@@ -28,7 +28,7 @@ public class AddTwoLinkedList {
 	}
 
 	public static ListNode addTwoLists(ListNode l1, ListNode l2) {
-		ListNode root = new ListNode(-1);
+		ListNode root = new ListNode();
 		int carry = 0;
 		ListNode curr1 = l1, curr2 = l2, curr = root;
 

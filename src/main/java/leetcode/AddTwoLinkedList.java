@@ -41,10 +41,10 @@ public class AddTwoLinkedList {
 			curr=curr.next;
 			if(curr1!=null) curr1 = curr1.next;
 			if(curr2!=null) curr2 = curr2.next;
-			}
+		}
 		if (carry>0){
 				curr.next=new ListNode(carry);
-			}
+		}
 		return root.next;
 	}
 

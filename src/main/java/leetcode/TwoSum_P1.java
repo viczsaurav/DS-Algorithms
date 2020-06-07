@@ -1,7 +1,7 @@
 package leetcode;
 
 import java.util.*;
-public class TwoSum {
+public class TwoSum_P1 {
 
 	public static int[] twoSum(int[] nums, int target) {
 		Map<Integer, Integer> comp = new HashMap<>();

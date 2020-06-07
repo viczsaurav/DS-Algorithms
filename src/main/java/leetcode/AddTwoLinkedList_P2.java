@@ -1,6 +1,6 @@
 package leetcode;
 
-public class AddTwoLinkedList {
+public class AddTwoLinkedList_P2 {
 
 	static class ListNode {
 		int val;

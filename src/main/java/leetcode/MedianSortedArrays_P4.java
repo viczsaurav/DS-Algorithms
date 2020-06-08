@@ -1,6 +1,11 @@
 package leetcode;
 
 public class MedianSortedArrays_P4 {
+
+	/*
+	 * Time Complexity : O(m+n)
+	 * Space Complexity: O(m+n)
+	 */
 	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 		int i=0,j=0,k=0;
 		int[] merged = new int[nums1.length + nums2.length];

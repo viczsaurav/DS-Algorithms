@@ -6,7 +6,12 @@ import java.io.IOException;
 
 public class PassingYearBooks {
 
-
+	/**
+	 * https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=146466059993201
+	 *
+	 * @param arr
+	 * @return
+	 */
 	int[] findSignatureCounts(int[] arr) {
 
 		int[] signatures = new int[arr.length];

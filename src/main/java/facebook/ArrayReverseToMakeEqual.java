@@ -5,6 +5,10 @@ package facebook;
 public class ArrayReverseToMakeEqual {
 
 	/**
+	 *
+	 * https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=2869293499822992
+	 *
+	 *
 	 * Given two arrays A and B of length N, determine if there is a way to make A equal to B by reversing any subarrays from array B any number of times.
 	 * Signaturec: bool areTheyEqual(int[] arr_a, int[] arr_b)
 	 * Input

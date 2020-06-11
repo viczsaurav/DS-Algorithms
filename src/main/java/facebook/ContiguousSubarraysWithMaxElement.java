@@ -2,42 +2,32 @@ package facebook;
 
 public class ContiguousSubarraysWithMaxElement {
 
-	// Add any helper functions you may need here
-
-
-	int[] countSubarrays(int[] arr) {
-
+	public int[] countSubarrays(int[] arr) {
 		int[] output = new int[arr.length];
-		int maxValue = -1, maxCount = 0, i=0;
+		int maxValue = -1, maxCount = 0;
 
-		while(i<arr.length){
+		for(int i=0; i<arr.length;i++){
 			int left=i-1, right=i+1;
-			// current element as default subarray
-			output[i]++;
+			output[i]++;	// current element as default subarray count
 
 			// Left Count
-			if (left>=0 && arr[i]>maxValue){
-				output[i]+=maxCount;
-			}
+			if (left>=0 && arr[i]>maxValue) output[i]+=maxCount;
 
+			// Right Count update
 			while(right<arr.length && arr[i]>arr[right]){
 				output[i]++; right++;
 			}
 
-			if (arr[i]>maxValue && output[i]>maxCount){
+			// Memoization for the left count
+			if (arr[i]>maxValue && output[i]>maxCount) {
 				maxValue = arr[i];
 				maxCount = output[i];
 			}
-
-			i++;
 		}
-
 		return output;
-
 	}
 
 	// These are the tests we use to determine if the solution is correct.
-	// You can add your own at the bottom, but they are otherwise not editable!
 	int test_case_number = 1;
 	void check(int[] expected, int[] output) {
 		int expected_size = expected.length;
@@ -84,8 +74,6 @@ public class ContiguousSubarraysWithMaxElement {
 		int[] expected_2 = {1, 2, 6, 1, 2, 1};
 		int[] output_2 = countSubarrays(test_2);
 		check(expected_2, output_2);
-
-		// Add your own test cases here
 
 	}
 	public static void main(String[] args) {

@@ -10,7 +10,7 @@ public class ContiguousSubarraysWithMaxElement {
 			int left=i-1, right=i+1;
 			output[i]++;	// current element as default subarray count
 
-			//[7,3,4,5] gives wrong left count for [4]
+			//TODO [7,3,4,5] gives wrong left count for [4]
 			// Left Count
 			if (left>=0 && arr[i]>maxValue) output[i]+=maxCount;
 

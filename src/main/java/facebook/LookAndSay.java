@@ -30,11 +30,10 @@ public class LookAndSay {
 
 		while(length-->1){
 			StringBuffer newBuffer =  new StringBuffer();
-			char[] valArray = buffer.toString().toCharArray();
-			char prev=valArray[0];
+			char prev=buffer.charAt(0);
 			int count=1;
-			for(int i=1;i<valArray.length;i++){
-				char curr = valArray[i];
+			for(int i=1;i<buffer.length();i++){
+				char curr = buffer.charAt(i);
 				if(curr==prev){
 					count++;
 				}

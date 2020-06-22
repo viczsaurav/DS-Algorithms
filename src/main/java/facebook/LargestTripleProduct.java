@@ -24,9 +24,9 @@ public class LargestTripleProduct {
 		// Check array length - edge conditions
 		int[] out = new int[arr.length];
 		List<Integer> prodList = new ArrayList<>();
-		prodList.add(arr[0]);
-		prodList.add(arr[1]);
-		prodList.add(arr[2]);
+		for(int i=0;i<3;i++){
+			prodList.add(arr[i]);
+		}
 
 		int maxProduct = arr[2] * arr[1] * arr[0];
 		int minVal = Collections.min(prodList);

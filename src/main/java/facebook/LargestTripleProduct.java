@@ -19,12 +19,6 @@ public class LargestTripleProduct {
 	 * 	 - Return a list of n integers output[0..(n-1)], as described above.
 	 */
 
-	int getMinValueFromList(List<Integer> prodList){
-		Integer[] prodArr = prodList.toArray(new Integer[3]);
-		return Math.min(Math.min(prodArr[0], prodArr[1]), prodArr[2]);
-	}
-
-
 	int[] findMaxProduct(int[] arr) {
 		// Array values cant be negative
 		// Check array length - edge conditions
@@ -35,7 +29,7 @@ public class LargestTripleProduct {
 		prodList.add(arr[2]);
 
 		int maxProduct = arr[2] * arr[1] * arr[0];
-		int minVal = getMinValueFromList(prodList);
+		int minVal = Collections.min(prodList);
 		out[0] = out[1] = -1;
 		out[2] = maxProduct;
 
@@ -48,7 +42,7 @@ public class LargestTripleProduct {
 				maxProduct = currProd;
 				prodList.remove(new Integer(minVal));		// https://www.geeksforgeeks.org/remove-element-arraylist-java/
 				prodList.add(new Integer(curr));
-				minVal= getMinValueFromList(prodList);
+				minVal= Collections.min(prodList);
 			}
 			else {
 				out[i] = maxProduct;

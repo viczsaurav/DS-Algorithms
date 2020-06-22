@@ -19,6 +19,11 @@ public class LargestTripleProduct {
 	 * 	 - Return a list of n integers output[0..(n-1)], as described above.
 	 */
 
+	/**
+	 * Time: O(N), Space: O(1)
+	 *
+	 */
+
 	int[] findMaxProduct(int[] arr) {
 		// Array values cant be negative
 		// Check array length - edge conditions

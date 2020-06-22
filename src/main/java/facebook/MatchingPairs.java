@@ -45,13 +45,13 @@ class MatchingPairs {
 		if (temp_i==s.length()) return (s.length()-2);
 
 		// Case 2 : We found other non-matching char
-		// Case 2.1 : If swapping makes them same string
+		// Case 2.1 : If swapping makes them same string (Emulatimg Swap - Exact 1 swap)
 		if (s.charAt(i)==t.charAt(temp_j) && s.charAt(temp_i)== t.charAt(j)){
 			count = temp_i+1;
 		}
 		// Case 2.1 : If swapping does not make them same string
 		else {
-			count = temp_i-1; // temp_i +1 -2
+			count = temp_i-1; // temp_i+1-2
 		}
 		i= temp_i+1;
 		j=temp_j+1;

@@ -5,7 +5,7 @@ import java.util.*;
 // Add any extra import statements you may need here
 
 
-public class RightViewBinaryTree {
+public class ViewBinaryTreeRight {
 
 	class Node {
 		int data;
@@ -147,6 +147,6 @@ public class RightViewBinaryTree {
 
 	}
 	public static void main(String[] args) throws IOException {
-		new RightViewBinaryTree().run();
+		new ViewBinaryTreeRight().run();
 	}
 }

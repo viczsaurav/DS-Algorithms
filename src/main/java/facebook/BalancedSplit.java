@@ -25,7 +25,7 @@ class BalancedSplit {
 					leftSum += arr[i];
 					rightSum += arr[j];
 					maxLeft = Math.max(maxLeft, arr[i]);
-					minRight = Math.min(minRight, arr[i]);
+					minRight = Math.min(minRight, arr[j]);
 				}
 			}
 			else if (leftSum< rightSum) {
@@ -36,23 +36,16 @@ class BalancedSplit {
 			else {
 				j--;
 				rightSum += arr[j];
-				minRight = Math.min(minRight, arr[i]);
+				minRight = Math.min(minRight, arr[j]);
 			}
 		}
 
+		//  integers in A are strictly smaller than all of the integers in B
 		if (leftSum==rightSum && maxLeft < minRight) return true;
 		else return false;
 
 
 	}
-
-
-
-
-
-
-
-
 
 
 
@@ -91,9 +84,14 @@ class BalancedSplit {
 		check(expected_2, output_2);
 
 		int arr_3[] = {12, 3, 7, 6, 2, 1, 5, 2};
-		boolean expected_3 = false;
+		boolean expected_3 = true;
 		boolean output_3 = balancedSplitExists(arr_3);
 		check(expected_3, output_3);
+
+		int arr_4[] = {3, 1, 1, 2, 2,1};
+		boolean expected_4 = false;
+		boolean output_4 = balancedSplitExists(arr_4);
+		check(expected_4, output_4);
 
 	}
 

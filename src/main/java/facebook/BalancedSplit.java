@@ -34,9 +34,9 @@ class BalancedSplit {
 				maxLeft = Math.max(maxLeft, arr[i]);
 			}
 			else {
-				j++;
+				j--;
 				rightSum += arr[j];
-
+				minRight = Math.min(minRight, arr[i]);
 			}
 		}
 
@@ -90,7 +90,10 @@ class BalancedSplit {
 		boolean output_2 = balancedSplitExists(arr_2);
 		check(expected_2, output_2);
 
-		// Add your own test cases here
+		int arr_3[] = {12, 3, 7, 6, 2, 1, 5, 2};
+		boolean expected_3 = false;
+		boolean output_3 = balancedSplitExists(arr_3);
+		check(expected_3, output_3);
 
 	}
 

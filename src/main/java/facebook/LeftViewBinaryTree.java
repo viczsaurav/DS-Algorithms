@@ -74,6 +74,7 @@ public class LeftViewBinaryTree {
 		if(root==null)	return;
 
 		if (max_level< level){
+			System.out.println(root.data);
 			nodeCount++;
 			max_level=level;
 		}
@@ -118,6 +119,12 @@ public class LeftViewBinaryTree {
 		int output_1_1 = visibleNodesRecursive(root_1);
 		check(expected_1, output_1);
 		check(expected_1, output_1_1);
+
+		System.out.println("----------------------");
+
+		//RESET GLOBAL VALUES
+		this.max_level=0;
+		this.nodeCount=0;
 
 		Node root_2 = new Node(10);
 		root_2.left = new Node(8);

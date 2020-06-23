@@ -39,7 +39,10 @@ public class ViewBinaryTreeLeft {
 
 		while(queue.size()>0){
 			Node node = queue.pollFirst();
-			if (prev==null || prev.data==-1) count++;
+			if (prev==null || prev.data==-1) {
+				count++;
+				// System.out.println(node.data);
+			}
 			prev=node;
 
 			if (node.data==-1){

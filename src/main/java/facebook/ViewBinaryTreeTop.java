@@ -3,6 +3,7 @@ package facebook;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ViewBinaryTreeTop {
 
@@ -22,42 +23,45 @@ public class ViewBinaryTreeTop {
 		}
 	}
 
-	class NodeWithDepth {
+	class NodeWithWidth {
 		Node node;
 		int distance;
 
-		NodeWithDepth(Node n, int distance){
+		NodeWithWidth(Node n, int distance){
 			this.node=n;
 			this.distance=distance;
 		}
 	}
 
 	List<Integer> visibleNodes(Node root){
-		Deque<NodeWithDepth> queue =  new ArrayDeque<>();
-		queue.offerLast(new NodeWithDepth(root, 0));
-		queue.offerLast(new NodeWithDepth(null,  -1));	// Dummy Node as level breaker
+		Deque<NodeWithWidth> queue =  new ArrayDeque<>();
+		queue.offerLast(new NodeWithWidth(root, 0));
+		queue.offerLast(new NodeWithWidth(null,  -1));	// Dummy Node as level breaker
 
 		Map<Integer, Integer> topView = new HashMap<>();
 
 		while(queue.size()>0){
-			NodeWithDepth node = queue.pollFirst();
+			NodeWithWidth node = queue.pollFirst();
 
 			if (node.node==null){
 				if(queue.size()==0){
 					break;
 				}
-				queue.offerLast(new NodeWithDepth(null,  -1));
+				queue.offerLast(new NodeWithWidth(null,  -1));
 			}
 			else {
 				if(topView.get(node.distance)==null)	topView.put(node.distance, node.node.data);
 				if(node.node.left!=null)
-					queue.offerLast(new NodeWithDepth(node.node.left, node.distance-1));
+					queue.offerLast(new NodeWithWidth(node.node.left, node.distance-1));
 				if(node.node.right!=null)
-					queue.offerLast(new NodeWithDepth(node.node.right, node.distance+1));
+					queue.offerLast(new NodeWithWidth(node.node.right, node.distance+1));
 			}
 		}
-
+//
 		return topView.values().stream().collect(Collectors.toList());
+//		return (new ArrayList<>(topView.values()));
+
+
 
 	}
 

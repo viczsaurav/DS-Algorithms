@@ -11,7 +11,7 @@ public class OrdersModelDao implements Serializable {
 	private static OrdersModelDao ordersModelDao;
 
 	private static Map<UUID, OrdersModel> ordersMap = new ConcurrentHashMap<>();
-	private static List<UUID> mostRecentOrders = new ArrayList<>();
+	private static List<UUID> mostRecentOrders = Collections.synchronizedList(new ArrayList<>());
 
 	// ------------------------ START of SingleTon Class Implementation ----------------------- //
 
@@ -79,6 +79,7 @@ public class OrdersModelDao implements Serializable {
 			o.setOrderItemIDs(items);
 			o.setLastUpdated(System.currentTimeMillis());
 			ordersMap.put(orderID, o);
+			mostRecentOrders.remove(orderID);		// The previous value needs to be removed. Its not a Set
 			mostRecentOrders.add(orderID);
 		}
 		return orderID;

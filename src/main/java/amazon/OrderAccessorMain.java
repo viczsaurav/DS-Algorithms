@@ -36,7 +36,7 @@ public class OrderAccessorMain {
 
 			System.out.println("Expected order(Most recent to last): order4 => order2 => order7 => order5 => order3");
 			System.out.println("---------------------");
-			dao.getLastOrders(5).forEach(x-> System.out.println(order.get(x.getOrderID())+ " =>" + x.toString()));
+			dao.getLastOrders(6).forEach(x-> System.out.println(order.get(x.getOrderID())+ " =>" + x.toString()));
 
 		}
 		catch(Exception e){

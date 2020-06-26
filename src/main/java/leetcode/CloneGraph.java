@@ -5,16 +5,16 @@ import java.util.*;
 public class CloneGraph {
 	Map<Node, Node> cloneMap;
 
+	/**
+	 * Depth First Traversal
+	 * @param node
+	 * @return
+	 */
 	public Node cloneGraphDFS(Node node) {
 		cloneMap = new HashMap<>();
 		return createClone(node);
 	}
 
-	/**
-	 * Depth First Search
-	 * @param node
-	 * @return
-	 */
 	public Node createClone(Node node){
 		if(node==null)  return null;
 		Node clone = new Node(node.val);
@@ -37,8 +37,7 @@ public class CloneGraph {
 	}
 
 	/**
-	 *
-	 * Breadth First
+	 * Breadth First traversal
 	 * @param root
 	 * @return
 	 */
@@ -46,7 +45,7 @@ public class CloneGraph {
 		if (root == null)
 			return root;
 
-		Map<Node, Node> cloneMap = new HashMap<>();
+		cloneMap = new HashMap<>();
 		Deque<Node> queue = new ArrayDeque<>();
 		queue.offerLast(root);
 
@@ -67,7 +66,6 @@ public class CloneGraph {
 		return cloneMap.get(root);
 	}
 }
-
 
 class Node {
 	public int val;

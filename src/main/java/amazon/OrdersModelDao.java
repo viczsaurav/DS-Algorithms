@@ -3,6 +3,7 @@ package amazon;
 import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class OrdersModelDao implements Serializable {
 
@@ -11,7 +12,8 @@ public class OrdersModelDao implements Serializable {
 	private static OrdersModelDao ordersModelDao;
 
 	private static Map<UUID, OrdersModel> ordersMap = new ConcurrentHashMap<>();
-	private static List<UUID> mostRecentOrders = Collections.synchronizedList(new ArrayList<>());
+//	private static List<UUID> mostRecentOrders = Collections.synchronizedList(new ArrayList<>());
+	private static List<UUID> mostRecentOrders = new CopyOnWriteArrayList<>();
 
 	// ------------------------ START of SingleTon Class Implementation ----------------------- //
 

@@ -14,9 +14,8 @@ public class GraphCourseSchedule {
 		courseMap = new HashMap<>();
 
 		for(int i=0; i< prerequisites.length;i++){
-			List<Integer> neighbors= courseMap.getOrDefault(prerequisites[i][0], new ArrayList<>());
-			neighbors.add(prerequisites[i][1]);
-			courseMap.put(prerequisites[i][0], neighbors);
+			courseMap.putIfAbsent(prerequisites[i][0], new ArrayList<>());
+			courseMap.get(prerequisites[i][0]).add(prerequisites[i][1]);
 		}
 
 		for (Integer key : courseMap.keySet()){

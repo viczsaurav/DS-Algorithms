@@ -28,10 +28,15 @@ public class GraphConnectedComponent323 {
 
 	}
 
+	// O(N)
 	private int countByUnionFind(int n) {
+		visited = new ArrayList<>();
+
 		for (int i=0; i<n;i++){
-			for (int neighbor: adj[i]){
-				union(i, neighbor);
+			visited.add(i);
+
+			for (int neighbor: adj[i]) {
+				if (!visited.contains(neighbor)) 	union(i, neighbor);
 			}
 		}
 

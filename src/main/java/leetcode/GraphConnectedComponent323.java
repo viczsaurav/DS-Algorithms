@@ -24,7 +24,6 @@ public class GraphConnectedComponent323 {
 			adj[edges[i][1]].add(edges[i][0]);
 		}
 
-//		countByBFS();
 		return countByUnionFind(n);
 
 	}
@@ -36,7 +35,7 @@ public class GraphConnectedComponent323 {
 			}
 		}
 
-		parent.forEach((k,v)-> System.out.println(k +" => "+ v));
+//		parent.forEach((k,v)-> System.out.println(k +" => "+ v));
 
 		return new HashSet<>(parent.values()).size();
 	}
@@ -48,6 +47,35 @@ public class GraphConnectedComponent323 {
 		else {
 			parent.put(neighbor, parent.get(parent.get(neighbor)));
 		}
+	}
+
+	/**
+	 * Using Depth First Search
+	 */
+	List<Integer> visited;
+	Set<Integer> parents;
+	private int countByDFS(int n){
+
+		visited =  new ArrayList<>();
+		parents =  new HashSet<>();
+
+		for (int i=0; i< n;i++){
+			if(!visited.contains(i)){
+				dfs(i);
+			}
+		}
+		return parents.size();
+	}
+
+	private void dfs(int node){
+		visited.add(node);
+
+		for (int neighbor: adj[node]){
+			if (!visited.contains(neighbor)){
+				//TODO
+			}
+		}
+
 	}
 
 	public static void main(String[] args) {

@@ -103,5 +103,19 @@ public class GraphMinimumHeightTrees {
 		return leaves;
 	}
 
+	public static void main(String[] args) {
+		GraphMinimumHeightTrees graph = new GraphMinimumHeightTrees();
+		int [][] pre1 = {{1,0},{1,2},{1,3}};
+		int num1 = 4;
 
+		int[][] pre2 = {{0, 3}, {1, 3}, {2, 3}, {4, 3}, {5, 4}};
+		int num2 = 6;
+
+		int[][] pre3 = {};
+		int num3 = 1;
+
+		System.out.println("Expected: [1], Output: "+ graph.findMinHeightTrees(num1, pre1).toString());
+		System.out.println("Expected: [3,4], Output: "+ graph.findMinHeightTrees(num2, pre2).toString());
+		System.out.println("Expected: [0], Output: "+ graph.findMinHeightTrees(num3, pre3).toString());
+	}
 }

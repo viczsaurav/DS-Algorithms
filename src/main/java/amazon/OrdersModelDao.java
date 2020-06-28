@@ -93,8 +93,8 @@ public class OrdersModelDao implements Serializable {
 		return true;
 	}
 
-	public OrdersModel get(UUID orderID) throws Exception {
-		return ordersMap.get(orderID);
+	public Optional<OrdersModel> get(UUID orderID) throws Exception {
+		return Optional.ofNullable(ordersMap.get(orderID));
 	}
 
 	public List<OrdersModel> getLastOrders(int n){

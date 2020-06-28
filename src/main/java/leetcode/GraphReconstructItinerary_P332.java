@@ -33,9 +33,10 @@ public class GraphReconstructItinerary_P332 {
 	public static void main(String[] args) {
 		GraphReconstructItinerary_P332 graph = new GraphReconstructItinerary_P332();
 		List<List<String>> input1 = new ArrayList<>();
-		input1.add(Arrays.asList(new String[]{"JFK","KUL"}));
-		input1.add(Arrays.asList(new String[]{"JFK","NRT"}));
-		input1.add(Arrays.asList(new String[]{"NRT","JFK"}));
+
+		input1.add(Arrays.asList("JFK","KUL"));
+		input1.add(Arrays.asList("JFK","NRT"));
+		input1.add(Arrays.asList("NRT","JFK"));
 
 		System.out.println("Expected: [JFK, NRT, JFK, KUL] \nOutput  : "+ graph.findItinerary(input1).toString());
 	}

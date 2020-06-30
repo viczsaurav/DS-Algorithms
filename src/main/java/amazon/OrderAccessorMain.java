@@ -34,7 +34,7 @@ public class OrderAccessorMain {
 
 			dao.delete(order6);
 
-			System.out.println(dao.get(order2).toString());
+			System.out.println(dao.get(order2).get().toString());
 
 			System.out.println("---------------------");
 

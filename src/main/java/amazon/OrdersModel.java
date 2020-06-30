@@ -15,27 +15,17 @@ public class OrdersModel {
 	public OrdersModel(UUID orderID){
 		this.orderID = orderID;
 	}
+
+	public OrdersModel(List<Integer> orderItemIDs){
+		this.orderID = UUID.randomUUID();
+		this.created = System.currentTimeMillis();
+		this.lastUpdated = System.currentTimeMillis();
+		this.orderSatus = 'C';
+	}
 	// Setters and Getters
 
 	public UUID getOrderID() {
 		return orderID;
-	}
-
-
-	public long getCreated() {
-		return created;
-	}
-
-	public void setCreated(long created) {
-		this.created = created;
-	}
-
-	public long getLastUpdated() {
-		return lastUpdated;
-	}
-
-	public void setLastUpdated(long lastUpdated) {
-		this.lastUpdated = lastUpdated;
 	}
 
 	public char getOrderSatus() {
@@ -51,6 +41,7 @@ public class OrdersModel {
 	}
 
 	public void setOrderItemIDs(List<Integer> orderItemIDs) {
+		this.lastUpdated = System.currentTimeMillis();
 		this.orderItemIDs = orderItemIDs;
 	}
 

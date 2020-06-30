@@ -57,18 +57,10 @@ public class OrdersModelDao implements Serializable {
 
 
 	public UUID add(List<Integer> items) throws Exception {
-		UUID uuid =  UUID.randomUUID();
-		while (ordersMap.keySet().contains(uuid)){
-			uuid = UUID.randomUUID();
-		}
-
-		OrdersModel o = new OrdersModel(uuid);
-		o.setOrderSatus('C');
-		o.setCreated(System.currentTimeMillis());
-		o.setLastUpdated(System.currentTimeMillis());
-		ordersMap.put(uuid, o);
-		mostRecentOrders.add(uuid);
-		return uuid;
+		OrdersModel o = new OrdersModel(items);
+		ordersMap.put(o.getOrderID(), o);
+		mostRecentOrders.add(o.getOrderID());
+		return o.getOrderID();
 	}
 
 	public UUID update(UUID orderID, List<Integer> items) throws Exception {
@@ -79,7 +71,6 @@ public class OrdersModelDao implements Serializable {
 		}
 		if (o.getOrderSatus()=='C' || o.getOrderSatus()=='P'){
 			o.setOrderItemIDs(items);
-			o.setLastUpdated(System.currentTimeMillis());
 			ordersMap.put(orderID, o);
 			mostRecentOrders.remove(orderID);		// The previous value needs to be removed. Its not a Set
 			mostRecentOrders.add(orderID);

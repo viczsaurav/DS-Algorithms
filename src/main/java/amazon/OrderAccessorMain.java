@@ -6,6 +6,10 @@ public class OrderAccessorMain {
 
 	public static void main(String[] args) {
 		OrdersModelDao dao =  OrdersModelDao.getSingletonInstance();
+		OrdersModelDao dao1 =  OrdersModelDao.getSingletonInstance();
+
+		System.out.println("Hash of both objects are equal? : "+ (dao.hashCode()==dao1.hashCode()));
+
 		Map<UUID, String> order = new LinkedHashMap<>();
 		try{
 			UUID order2 = dao.add(Arrays.asList(new Integer[]{2,2,3}));

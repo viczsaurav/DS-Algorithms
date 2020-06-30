@@ -4,8 +4,6 @@ import java.util.*;
 
 public class Fibonacci {
 
-	private static Map<Integer, Integer> values = new HashMap<>();
-
 	/**
 	 * Recursive approach (Top Down):
 	 *
@@ -23,6 +21,8 @@ public class Fibonacci {
 	 * @param n
 	 * @return
 	 */
+
+	private static Map<Integer, Integer> values = new HashMap<>();
 	public static int fibRecurse(int n) {
 
 		if (n<0){

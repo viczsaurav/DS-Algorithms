@@ -57,12 +57,8 @@ public class AddTwoLinkedList_P2 {
 		while (true) {
 			if (curr1 != null && curr2 != null) {
 				int sum = curr1.val + curr2.val + carry;
-				carry = 0;
-				if (sum > 9) {
-					sum = sum % 10;
-					carry = 1;
-				}
-				ListNode node = new ListNode(sum);
+				carry = sum/10;
+				ListNode node = new ListNode(sum%10);
 				if (root == null) {
 					root = node;
 					prev= root;

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 public class OrdersModelDao implements Serializable {
 
@@ -89,13 +90,19 @@ public class OrdersModelDao implements Serializable {
 	}
 
 	public List<OrdersModel> getLastOrders(int n){
-		List<OrdersModel> lastOrders= new ArrayList<>();
-
 		int size =  mostRecentOrders.size();
+		List<UUID> lastOrders= mostRecentOrders.subList(size-n, size);
 
-		for (int i=1; i<=n;i++){
-			lastOrders.add(ordersMap.get(mostRecentOrders.get(size-i)));
-		}
-		return lastOrders;
+		Collections.reverse(lastOrders);
+
+		return Collections.unmodifiableList(
+						lastOrders.stream()
+											.map(ordersMap::get)
+											.collect(Collectors.toList()));
+
+//		for (int i=1; i<=n;i++){
+//			lastOrders.add(ordersMap.get(mostRecentOrders.get(size-i)));
+//		}
+//		return Collections.unmodifiableList(lastOrders);
 	}
 }

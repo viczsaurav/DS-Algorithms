@@ -62,15 +62,13 @@ public class HighestProductOf3 {
  * 3
  *  ) runtime! We can definitely do better than that.
  *
- * Because any integer in the array could potentially be part of the greatest product of three integers, we must at least look at each integer. So we're doomed to spend at least O(n)O(n) time.
+ * Because any integer in the array could potentially be part of the greatest product of three integers, we must at least look at each integer. So we're doomed to spend at least O(n) time.
  *
- * Sorting the array would let us grab the highest numbers quickly, so it might be a good first step. Sorting takes O(n\lg{n})O(nlgn) time. That's better than the O(n^3)O(n
- * 3
- *  ) time our brute force approach required, but we can still do better.
+ * Sorting the array would let us grab the highest numbers quickly, so it might be a good first step. Sorting takes O(nlgn) time. That's better than the O(n^3) time our brute force approach required, but we can still do better.
  *
- * Since we know we must spend at least O(n)O(n) time, let's see if we can solve it in exactly O(n)O(n) time.
+ * Since we know we must spend at least O(n) time, let's see if we can solve it in exactly O(n) time.
  *
- * A great way to get O(n)O(n) runtime is to use a greedy ↴ approach. How can we keep track of the highestProductOf3 "so far" as we do one walk through the array?
+ * A great way to get O(n) runtime is to use a greedy ↴ approach. How can we keep track of the highestProductOf3 "so far" as we do one walk through the array?
  *
  * Put differently, for each new current number during our iteration, how do we know if it gives us a new highestProductOf3?
  *
@@ -84,7 +82,7 @@ public class HighestProductOf3 {
  *
  *   int[] arrayOfInts = new int[]{1, 10, -5, 1, -100};
  *
- * Right before we hit -100−100 (so, in our second-to-last iteration), our highestProductOf3 was 1010, and the threeNumbersWhichGiveHighestProduct were [10,1,1][10,1,1]. But once we hit -100−100, suddenly we can take -100 * -5 * 10−100∗−5∗10 to get 50005000. So we should have "held on to" that -5−5, even though it wasn't one of the threeNumbersWhichGiveHighestProduct.
+ * Right before we hit -100 (so, in our second-to-last iteration), our highestProductOf3 was 10, and the threeNumbersWhichGiveHighestProduct were [10,1,1]. But once we hit -100, suddenly we can take -100 * -5 * 10 to get 5000. So we should have "held on to" that -5, even though it wasn't one of the threeNumbersWhichGiveHighestProduct.
  *
  * We need something a little smarter than threeNumbersWhichGiveHighestProduct. What should we keep track of to make sure we can handle a case like this?
  *

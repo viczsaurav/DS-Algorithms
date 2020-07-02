@@ -20,9 +20,11 @@ public class SolveMazeDFS {
 	 */
 
 	private static List<Character> path;
+	private static int[][] visited;
 
 	public static List<Character> solveMaze(int[][] maze, int x, int y){
 		path = new ArrayList<>();
+		visited = new int[maze.length][maze[0].length];
 
 		if(maze.length==0)	return path;
 
@@ -32,14 +34,11 @@ public class SolveMazeDFS {
 	}
 
 	private static boolean solveDfs(int[][] maze, int i, int j, boolean start){
-		if (i<0 || i>= maze.length || j<0 || j>=maze[0].length || maze[i][j]==0){
+		if (i<0 || i>= maze.length || j<0 || j>=maze[0].length || maze[i][j]==0 || visited[i][j]==1){
 			return false;
 		}
-		else if(!start && (i==0 || i==maze.length-1 || j==0 || j==maze[0].length-1) && maze[i][j]==1){
-			maze[i][j]=0;		// To ensure single path
-			return true;
-	}
-		maze[i][j] =0;
+
+		visited[i][j]=1;
 		if(solveDfs(maze, i-1, j, false)){
 			path.add('U');		// If we go up from here we reach exit or path to exit
 		}
@@ -52,14 +51,18 @@ public class SolveMazeDFS {
 		if(solveDfs(maze, i, j+1, false)){
 			path.add('R');	// If we go up from here we reach exit or path to exit
 		}
+		if((i==0 || i==maze.length-1 || j==0 || j==maze[0].length-1) && maze[i][j]==1){
+//			maze[i][j]=0;		// To ensure single path
+			return true;
+		}
 		return false;
 	}
 
 	public static void main(String[] args) {
-		int maze[][] = { { 1, 0, 0, 0 },
-						{ 1, 1, 0, 1 },
-						{ 0, 1, 0, 0 },
-						{ 1, 1, 1, 1 } };
+		int maze[][] = {{1, 0, 0, 0},
+										{1, 1, 0, 0},
+										{0, 1, 0, 0},
+										{0, 1, 1, 1}};
 
 		List<Character> finalPath = solveMaze(maze, 0,0);
 

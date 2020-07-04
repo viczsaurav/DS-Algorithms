@@ -4,10 +4,23 @@ import java.util.*;
 
 public class SolveMazeDFS {
 	/**
-	 * {1, 0, 0, 0}
-	 * {1, 1, 0, 0}
-	 * {0, 1, 0, 0}
-	 * {0, 1, 1, 1}
+	 * {0, 0, 0, 0, 0, 0},
+	 * {1, 1, 0, 0, 0, 0},
+	 * {0, 1, 1, 0, 1, 1},
+	 * {0, 0, 1, 0, 1, 0},
+	 * {0, 0, 1, 1, 1, 0},
+	 * {0, 0, 0, 0, 0, 0}
+	 *
+	 * This assumes that the walls of the maze have just 2 openings, 1 Starting point and another exist point
+	 * and the starting point is provided.
+	 * The exist point is to be searched and the path needs to be found.
+	 *
+	 * We follow DFS here and mark the visited nodes. After finding the exit point on the wall, we track back and add the
+	 * directions[U, D, R, L] which lead to the exist.
+	 * At the end we reverse the directions taken to simulate movement from start to end pint.
+	 *
+	 * E.g, in above example with starting point at x,y = 1,0 , we have just one exit (2,5)
+	 * The directions to be followed are Start->End  => [R, D, R, D, D, R, R, U, U, R]
 	 *
 	 */
 
@@ -63,15 +76,15 @@ public class SolveMazeDFS {
 	public static void main(String[] args) {
 		int maze[][] = {{0, 0, 0, 0, 0, 0},
 										{1, 1, 0, 0, 0, 0},
-										{0, 1, 1, 0, 0, 0},
-										{0, 0, 1, 0, 0, 0},
-										{0, 0, 1, 1, 1, 1},
+										{0, 1, 1, 0, 1, 1},
+										{0, 0, 1, 0, 1, 0},
+										{0, 0, 1, 1, 1, 0},
 										{0, 0, 0, 0, 0, 0}
 									};
 
 		List<Character> finalPath = solveMaze(maze, 1,0);
 
-		System.out.println(finalPath.toString());
+		System.out.println("Expected: [R, D, R, D, D, R, R, U, U, R] \nresult:   "+finalPath.toString());
 
 	}
 }

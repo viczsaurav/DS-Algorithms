@@ -5,6 +5,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * While looking for topview of a tree, the idea is that we will only see the outer rim of the tree
+ * and all the internal nodes having an existing node at same distance wrt to root will hide it.
+ *
+ * So here, we follow BFS from thr top-> to get all 'first' nodes at a distance and return
+ *
+ */
+
 public class ViewBinaryTreeTop {
 
 	class Node {
@@ -50,7 +58,8 @@ public class ViewBinaryTreeTop {
 				queue.offerLast(new NodeWithWidth(null,  -1));
 			}
 			else {
-				if(topView.get(node.distance)==null)	topView.put(node.distance, node.node.data);
+				if(topView.get(node.distance)==null)
+					topView.put(node.distance, node.node.data);		// Retain only first node at a distance.
 				if(node.node.left!=null)
 					queue.offerLast(new NodeWithWidth(node.node.left, node.distance-1));
 				if(node.node.right!=null)

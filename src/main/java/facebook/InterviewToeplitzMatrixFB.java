@@ -30,32 +30,13 @@ public class InterviewToeplitzMatrixFB {
 
 	public static boolean isToeplitzMatrix(int[][] grid){
 
-		if(grid.length==0)  return true;
-		if (grid.length==1 || grid[0].length==1) return true;
+		if	(grid.length==0)  return true;
 
-		int i=0, j=i;
-		while(i<grid.length && j<grid[0].length-1){
-			if (grid[i+1][j+1]!=grid[i][j])  return false;
-			i++; j++;
-		}
-
-		while (j<grid[0].length){
-			j=++i;
-			while(i<grid.length && j<grid[0].length-1){
-				if (grid[i][j+1]!=grid[i][j])  return false;
+		for(int i=0; i< grid.length-1; i++){
+			for(int j=0; j< grid[0].length-1;j++){
+				if (grid[i][j]!=grid[i+1][j+1])  return false;
 			}
 		}
-
-		j=0;
-		i=j;
-
-		while (j<grid[0].length){
-			i=++j;
-			while(i<grid.length-1 && j<grid[0].length){
-				if (grid[i+1][j]!=grid[i][j])  return false;
-			}
-		}
-
 		return true;
 	}
 
@@ -71,8 +52,11 @@ public class InterviewToeplitzMatrixFB {
 											{6, 5, 1, 2},
 											{7, 6, 5, 1}};
 
+		int[][] grid3 = { {1, 2, 3, 4}};
+
 		System.out.println("Grid1 => expected: [true], actual: "+ isToeplitzMatrix(grid1));
 		System.out.println("Grid2 => expected: [false], actual: "+ isToeplitzMatrix(grid2));
+		System.out.println("Grid2 => expected: [true], actual: "+ isToeplitzMatrix(grid3));
 
 
 	}

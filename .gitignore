@@ -1,1 +1,6 @@
 /bin
+*.class
+*.log
+*.iml
+.idea/
+target/

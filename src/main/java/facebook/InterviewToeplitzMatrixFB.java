@@ -32,6 +32,9 @@ public class InterviewToeplitzMatrixFB {
 
 		if	(grid.length==0)  return true;
 
+		/*
+			Checking 2 rows a a time moving from left to right
+		 */
 		for(int i=0; i< grid.length-1; i++){
 			for(int j=0; j< grid[0].length-1;j++){
 				if (grid[i][j]!=grid[i+1][j+1])  return false;

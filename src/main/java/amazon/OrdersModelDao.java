@@ -90,6 +90,11 @@ public class OrdersModelDao implements Serializable {
 	}
 
 	public List<OrdersModel> getLastOrders(int n){
+
+		/**
+		 * We can also use Doubly linked list to always have sorted Orders in O(1) time
+		 * But have to maintain space to get actual object - So space will be O(2n)
+		 */
 		int size =  mostRecentOrders.size();
 		List<UUID> lastOrders= mostRecentOrders.subList(size-n, size);
 

@@ -39,10 +39,10 @@ public class HouseRobber_P198 {
         dp[1] = nums[0];
 
         for (int i=1; i<nums.length;i++){
-            dp[i+1] = Math.max(dp[i], nums[i]+ dp[i-1]);
             // note: dp[i-1] here is the max till nums[i-2],
             // thus its not adjacent to the old max
             // e.g i=2, dp[3] = Math.max(dp[2], nums[2] + dp[1]);
+            dp[i+1] = Math.max(dp[i], nums[i]+ dp[i-1]);
         }
         return dp[nums.length];
     }

@@ -96,8 +96,8 @@ public class duplicateFiles {
                 String fileHash;
                 try {
                     fileHash = utils.sampleHashFile(currentPath);
-                } catch (IOException | NoSuchAlgorithmException e) {
-
+                }
+                catch (IOException | NoSuchAlgorithmException e) {
                     // show error and skip this file
                     e.printStackTrace();
                     continue;
@@ -114,12 +114,10 @@ public class duplicateFiles {
                     Path existingPath = fileInfo.path;
 
                     if (currentLastEditedTime > existingLastEditedTime) {
-
                         // current file is the dupe!
                         duplicates.add(new FilePaths(currentPath, existingPath));
 
                     } else {
-
                         // old file is the dupe!
                         duplicates.add(new FilePaths(existingPath, currentPath));
 

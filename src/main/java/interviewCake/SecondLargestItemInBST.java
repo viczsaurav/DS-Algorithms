@@ -44,7 +44,7 @@ public class SecondLargestItemInBST {
 	/**
 	 * without recursion
 	 *
-	 * We're doing one walk down our BST, which means O(h)O(h) time, where h is the height of the tree
+	 * We're doing one walk down our BST, which means O(h) time, where h is the height of the tree
 	 * (again, that's O(lg(n)) if the tree is balanced, O(n) otherwise). O(1) space.
 	 */
 

@@ -23,7 +23,7 @@ public class BT_LevelOrderTraversal_BFS_P107 {
 
         if (root == null) return out;
 
-        Queue<TreeNode> queue = new ArrayDeque<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         queue.offer(null);
 

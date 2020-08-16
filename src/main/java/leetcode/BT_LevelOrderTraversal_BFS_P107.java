@@ -23,6 +23,7 @@ public class BT_LevelOrderTraversal_BFS_P107 {
 
         if (root == null) return out;
 
+        // For BFS, don't use Deque with `int` val TreeNode, as you cannot add null TreeNode to Deque.
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         queue.offer(null);

@@ -47,46 +47,35 @@ public class SecondLargestItemInBST {
 	 * We're doing one walk down our BST, which means O(h) time, where h is the height of the tree
 	 * (again, that's O(lg(n)) if the tree is balanced, O(n) otherwise). O(1) space.
 	 */
+	public static int findSecondLargest(BinaryTreeNode node){
 
-	public static int findSecondLargest(BinaryTreeNode rootNode) {
-
-		if(rootNode==null ||
-						(rootNode.left==null && rootNode.right==null)){
-			throw new IllegalArgumentException("Atleast 2 nodes required.");
+		// Base case : Check for null, single Node
+		if (node==null || node.left==null && node.right==null){
+			throw new IllegalArgumentException("At least 2 nodes required");
 		}
 
-		BinaryTreeNode current = rootNode;
-
+		// Since its a BST, the rightmost element will always be the largest
 		while(true){
-			// Check 1 : Traverse right and check for rightmostNode(largest), return the 2nd last,
-			//			 It will be current node when current.right!=null & current.right is a leaf node
-			// 				e.g 4 => 5 [5 is largest, 4 is current]
-			if (current.right!=null &&  current.right.left==null && current.right.right==null) {
-				return current.value;
+			// Case 1: When your rightmost element is a leaf node, thus the parent should be 2nd largest
+			if (node.right!=null && node.right.left==null && node.right.right==null){
+				return node.value;
 			}
 
-			// - if below part is true for current node,it means we reached largest node and there is a left node of it.
-			// - Check largest value in left subtree which will be 2nd largest value of tree
-			if(current.left!=null&& current.right==null){
-				return getRightMostNode(current.left);
+			// Case 2: When your rightmost element(largest) has a left subtree
+			// 			Remember case when only left subtree is present, thus root.left is the secondLargestNode
+			if (node.left!=null && node.right==null){
+				return (getRightMostNodeIterative(node.left).value);
 			}
 
-			// Else continue along right path
-			current = current.right;
+			//else continue along right path
+			node=node.right;
 		}
 	}
 
-	public static int getRightMostNode(BinaryTreeNode node){
-		BinaryTreeNode largest = null;
-		BinaryTreeNode current = node;
-
-		while(current!=null){
-			if(current.right==null){
-				largest = current;
-			}
-			current = current.right;
+	private static BinaryTreeNode getRightMostNodeIterative(BinaryTreeNode node) {
+		while(node.right!=null){
+			node = node.right;
 		}
-
-		return largest.value;
+		return node;
 	}
 }

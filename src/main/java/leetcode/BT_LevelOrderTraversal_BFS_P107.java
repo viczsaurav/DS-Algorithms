@@ -24,6 +24,7 @@ public class BT_LevelOrderTraversal_BFS_P107 {
         if (root == null) return out;
 
         // For BFS, don't use Deque with `int` val TreeNode, as you cannot add null TreeNode to Deque.
+        // Dequeue can be used like levelByLevelTraversalWithDeque in file LevelByLevelTraversal using size concept
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         queue.offer(null);
@@ -32,7 +33,7 @@ public class BT_LevelOrderTraversal_BFS_P107 {
             TreeNode node = queue.poll();
             if (node == null) {
                 // Level Break
-                out.add(0, new ArrayList<>(level));
+                out.add(0, level);
                 level = new ArrayList<>();
 
                 // queue empty means end of tree

@@ -58,12 +58,14 @@ public class SecondLargestItemInBST {
 		BinaryTreeNode current = rootNode;
 
 		while(true){
-			// Check 1 : Traverse right and check for rightmostNode(largest), return the 2nd last
+			// Check 1 : Traverse right and check for rightmostNode(largest), return the 2nd last,
+			//			 It will be current node when current.right!=null & current.right is a leaf node
+			// 				e.g 4 => 5 [5 is largest, 4 is current]
 			if (current.right!=null &&  current.right.left==null && current.right.right==null) {
 				return current.value;
 			}
 
-			// - if reached this part means we reaached largest node and there is a left node of it.
+			// - if below part is true for current node,it means we reached largest node and there is a left node of it.
 			// - Check largest value in left subtree which will be 2nd largest value of tree
 			if(current.left!=null&& current.right==null){
 				return getRightMostNode(current.left);

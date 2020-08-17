@@ -59,18 +59,22 @@ public class SolveMazeDFS {
 		visited[i][j]=1;
 		if(solveDfs(maze, i-1, j, false)){
 			path.add('U');		// If we go up from here we reach exit or path to exit
+			return true;
 		}
 		if(solveDfs(maze, i+1, j, false)){
 			path.add('D');	// If we go down from here we reach exit or path to exit
+			return true;
 		}
 		if(solveDfs(maze, i, j-1, false)){
 			path.add('L');	// If we go up from here we reach exit or path to exit
+			return true;
 		}
 		if(solveDfs(maze, i, j+1, false)){
 			path.add('R');	// If we go up from here we reach exit or path to exit
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 
 	public static void main(String[] args) {
@@ -85,6 +89,18 @@ public class SolveMazeDFS {
 		List<Character> finalPath = solveMaze(maze, 1,0);
 
 		System.out.println("Expected: [R, D, R, D, D, R, R, U, U, R] \nresult:   "+finalPath.toString());
+
+		int maze1[][] = {{0, 0, 0, 0, 0, 0},
+						 {1, 1, 1, 1, 0, 0},
+						 {0, 1, 0, 0, 1, 1},
+						 {0, 1, 0, 0, 1, 0},
+						 {0, 1, 1, 1, 1, 0},
+						 {0, 0, 0, 0, 0, 0}
+		};
+
+		List<Character> finalPath2 = solveMaze(maze1, 1,0);
+
+		System.out.println("Expected: [R, D, D, D, R, R, R, U, U, R] \nresult:   "+finalPath2.toString());
 
 	}
 }

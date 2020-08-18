@@ -46,15 +46,15 @@ public class TestStockPrice {
 
 	@Test
 	public void exceptionWithOnePriceTest(){
-		assertThrows(Exception.class, () -> {
-			getMaxProfit(new int[] {5});
-		});
+		final int actual = getMaxProfit(new int[] {5});
+		final int expected = 0;
+		assertEquals(expected, actual);
 	}
 
 	@Test
 	public void exceptionWithEmptyPricesTest(){
-		assertThrows(Exception.class, ()-> {
-			getMaxProfit(new int[] {});
-		});
+		final int actual = getMaxProfit(new int[] {});
+		final int expected = 0;
+		assertEquals(expected, actual);
 	}
 }

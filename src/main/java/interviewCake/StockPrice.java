@@ -28,6 +28,10 @@ public class StockPrice {
 
 	public static int getMaxProfit(int[] stockPrices) {
 
+		//Base case
+		if (stockPrices.length==0 || stockPrices.length==1)
+			return 0;
+
 		int min = stockPrices[0];
 		int maxProfit = stockPrices[1] - min;
 

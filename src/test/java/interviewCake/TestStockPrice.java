@@ -33,7 +33,7 @@ public class TestStockPrice {
 	@Test
 	public void priceGoesDownAllDayTest() {
 		final int actual = getMaxProfit(new int[] {9, 7, 4, 1});
-		final int expected = -2;
+		final int expected = 0;
 		assertEquals(expected, actual);
 	}
 

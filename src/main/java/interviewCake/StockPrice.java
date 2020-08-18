@@ -40,7 +40,7 @@ public class StockPrice {
 			min = Math.min(min, stockPrices[i]);
 		}
 
-		return maxProfit;
+		return (maxProfit < 0 ? 0 : maxProfit);
 
 	}
 	public static int getMaxProfitWithIfAndBug(int[] stockPrices) {

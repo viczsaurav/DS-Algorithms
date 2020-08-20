@@ -29,6 +29,11 @@ public class SellStocksMultipleTimes_DP_P122 {
         return maxProfit;
     }
 
+    public static int maxProfitApproach2(int[] prices) {
+        //TODO
+        return -1;
+    }
+
     public static void main(String[] args) {
         int[] input1 =  new int[]{7,1,5,3,6,4};
         int[] input2 =  new int[]{1,2,3,4,5};

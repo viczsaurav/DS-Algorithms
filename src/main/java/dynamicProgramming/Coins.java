@@ -3,13 +3,6 @@ package dynamicProgramming;
 import java.util.Arrays;
 
 public class Coins {
-
-	int[] maxValues;
-
-	public Coins(int n){
-		maxValues = new int[n+1];
-		Arrays.fill(maxValues, -1);
-	}
 	/**
 	 * In Byteland they have a very strange monetary system.
 	 *
@@ -40,6 +33,13 @@ public class Coins {
 	 * than $1 out of them. It is better just to change the 2 coin directly into $2.
 	 */
 
+
+	int[] maxValues;
+
+	public Coins(int n){
+		maxValues = new int[n+1];
+		Arrays.fill(maxValues, -1);
+	}
 
 	public static void main(String[] args) {
 		int[] inputs = {12,2};

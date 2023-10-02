@@ -32,7 +32,7 @@ public class FlattenBT_DFS_P114 {
         if (root==null) return;
 
         flatten(root.left);
-        flatten(root.right);    // this is postorder, inorder also works
+        flatten(root.right);    // this is pre-order, inorder also works
 
         TreeNode node = root.right; // save right tree
         root.right = root.left;     // insert left tree to right

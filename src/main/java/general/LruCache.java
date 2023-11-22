@@ -1,4 +1,4 @@
-package searchingSortingDataStructures;
+package general;
 
 
 /**

@@ -26,9 +26,19 @@ public class FindRepeat {
 	public static int findRepeat(int[] numbers) {
 
 		// find a number that appears more than once
+		if (numbers.length < 2) {
+			throw new IllegalArgumentException("Finding duplicate requires at least two numbers");
+		}
+		// O[n] space
+		int [] seen = new int[numbers.length];
 
-
-
+		for (int n : numbers) {
+			if (seen[n] == 1) {
+				return n;
+			} else {
+				seen[n] = 1;
+			}
+		}
 		return 0;
 	}
 }

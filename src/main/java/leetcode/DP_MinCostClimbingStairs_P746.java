@@ -5,7 +5,7 @@ public class DP_MinCostClimbingStairs_P746 {
         public int minCostClimbingStairs(int[] cost) {
         /*
         1. Write objective function - F(i) => Cost to get to ith stair
-        2. Iddentify Base cases => F(0) = 10, F(1) = 15, F(2) = 15
+        2. Identify Base cases => F(0) = 10, F(1) = 15, F(2) = 15
         3. Define Transition Function
             - Imagine you have already completed/ solved - End of the problem
             - Imagine you are already crossed. F(n)

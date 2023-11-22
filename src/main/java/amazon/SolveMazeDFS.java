@@ -11,7 +11,7 @@ public class SolveMazeDFS {
 	 * {0, 0, 1, 1, 1, 0},
 	 * {0, 0, 0, 0, 0, 0}
 	 *
-	 * This assumes that the walls of the maze have just 2 openings, 1 Starting point and another exist point
+	 * This assumes that the walls of the maze have just 2 openings, 1 Starting point and another exit point
 	 * and the starting point is provided.
 	 * The exist point is to be searched and the path needs to be found.
 	 *
@@ -47,7 +47,7 @@ public class SolveMazeDFS {
 	}
 
 	private static boolean solveDfs(int[][] maze, int i, int j, boolean start){
-		if (i<0 || i>= maze.length || j<0 || j>=maze[0].length || maze[i][j]==0 || visited[i][j]==1){
+		if (i<0 || i>= maze.length || j<0 || j>=maze[i].length || maze[i][j]==0 || visited[i][j]==1){
 			return false;
 		}
 
@@ -55,8 +55,8 @@ public class SolveMazeDFS {
 			maze[i][j]=0;		// To ensure single path
 			return true;
 		}
-
 		visited[i][j]=1;
+
 		if(solveDfs(maze, i-1, j, false)){
 			path.add('U');		// If we go up from here we reach exit or path to exit
 			return true;
@@ -66,11 +66,11 @@ public class SolveMazeDFS {
 			return true;
 		}
 		if(solveDfs(maze, i, j-1, false)){
-			path.add('L');	// If we go up from here we reach exit or path to exit
+			path.add('L');	// If we go Left from here we reach exit or path to exit
 			return true;
 		}
 		if(solveDfs(maze, i, j+1, false)){
-			path.add('R');	// If we go up from here we reach exit or path to exit
+			path.add('R');	// If we go right from here we reach exit or path to exit
 			return true;
 		}
 

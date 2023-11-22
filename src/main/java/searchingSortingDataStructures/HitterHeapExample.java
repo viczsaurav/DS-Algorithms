@@ -2,6 +2,12 @@ package searchingSortingDataStructures;
 
 import java.util.*;
 
+
+/**
+ * Top K hitter problem -e.g Top videos, trending vidoes, most viewed etc.
+ * https://www.youtube.com/watch?v=kx-XDoPjoHw
+ *
+ */
 public class HitterHeapExample {
 
     public static void main(String[] args) {

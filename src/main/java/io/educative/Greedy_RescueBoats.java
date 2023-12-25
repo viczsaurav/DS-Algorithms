@@ -41,16 +41,23 @@ public class Greedy_RescueBoats{
         int j = people.length-1;
         int numBoats=0;
 
+//        while(i<=j){
+//            if ((people[i] + people[j])>limit){
+//                numBoats++;
+//                j--;
+//            }
+//            else if ((people[i] + people[j])<=limit){
+//                numBoats++;
+//                i++;
+//                j--;
+//            }
+//        }
         while(i<=j){
-            if ((people[i] + people[j])>limit){
-                numBoats++;
-                j--;
-            }
-            else if ((people[i] + people[j])<=limit){
-                numBoats++;
+            if ((people[i] + people[j])<=limit){
                 i++;
-                j--;
             }
+            numBoats++;
+            j--;
         }
         return numBoats;
     }

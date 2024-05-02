@@ -1,24 +1,9 @@
-package leetcode;
+package leetcode.binarytree;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class FlattenBT_DFS_P114 {
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {}
-
-        TreeNode(int val) { this.val = val;}
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     /**
         The approach is to save right tree first and append the left tree to the right

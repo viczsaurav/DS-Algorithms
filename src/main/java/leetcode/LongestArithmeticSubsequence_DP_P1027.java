@@ -1,7 +1,7 @@
 package leetcode;
 import java.util.*;
 
-class LongestArithmeticSubsequence {
+class LongestArithmeticSubsequence_DP_P1027 {
     public int longestArithSeqLength(int[] nums) {
 
         // Define Array of type Map(like a 2d array)

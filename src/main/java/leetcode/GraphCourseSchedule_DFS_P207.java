@@ -2,7 +2,7 @@ package leetcode;
 
 import java.util.*;
 
-public class GraphCourseSchedule {
+public class GraphCourseSchedule_DFS_P207 {
 	Set<Integer> visited;
 	Set<Integer> explored;
 	Map<Integer, List<Integer>> courseMap;
@@ -45,7 +45,7 @@ public class GraphCourseSchedule {
 	}
 
 	public static void main(String[] args) {
-		GraphCourseSchedule graph = new GraphCourseSchedule();
+		GraphCourseSchedule_DFS_P207 graph = new GraphCourseSchedule_DFS_P207();
 		int [][] pre1 = {{1,0},{0,1}};
 		int num1 = 2;
 

@@ -46,4 +46,16 @@ public class GraphCourseSchedule_BFS_Kahn_Topological_P207 {
         }
         return ans.size()==numCourses;
     }
+
+    public static void main(String[] args) {
+        GraphCourseSchedule_BFS_Kahn_Topological_P207 graph = new GraphCourseSchedule_BFS_Kahn_Topological_P207();
+        int [][] pre1 = {{1,0},{0,1}};
+        int num1 = 2;
+
+        int[][] pre2 = {{1,0},{2,1}};
+        int num2 = 3;
+
+        System.out.println("Expected: false, Output: "+ graph.canFinish(num1, pre1));
+        System.out.println("Expected: true, Output: "+ graph.canFinish(num2, pre2));
+    }
 }

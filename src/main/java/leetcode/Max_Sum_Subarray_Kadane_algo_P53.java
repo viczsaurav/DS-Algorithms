@@ -1,6 +1,6 @@
 package leetcode;
 
-public class Maximum_Subarray_Kadane_algo_P53 {
+public class Max_Sum_Subarray_Kadane_algo_P53 {
     public int maxSubArray(int[] nums) {
 
         int currMax = nums[0];
